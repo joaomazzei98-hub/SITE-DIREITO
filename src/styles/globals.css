@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-petrol: #16313e;
+  --color-ivory: #f7f5f2;
+  --color-gold: #c6a56b;
+  --color-graphite: #2b2b2b;
+  --color-ink: #10242d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-ivory);
+  color: var(--color-graphite);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(198, 165, 107, 0.32);
+  color: var(--color-ink);
+}
+
+a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .container-px {
+    @apply px-5 sm:px-6 lg:px-8;
+  }
+}
