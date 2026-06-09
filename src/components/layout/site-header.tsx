@@ -28,7 +28,7 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
           {mainNavigation.map((item) => {
             const isAreasItem = item.href === "/#areas";
-            const isActive =
+            const isCurrent =
               item.href === pathname || (isAreasItem && (pathname === "/" || isPracticePath));
 
             if (isAreasItem) {
@@ -36,10 +36,9 @@ export function SiteHeader() {
                 <div key={item.href} className="group relative">
                   <Link
                     href={item.href}
+                    aria-current={isCurrent ? "page" : undefined}
                     aria-haspopup="menu"
-                    className={`inline-flex items-center gap-1.5 text-sm font-medium transition hover:text-gold ${
-                      isActive ? "text-gold" : "text-petrol"
-                    }`}
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-petrol transition hover:opacity-75"
                   >
                     {item.label}
                     <span
@@ -62,7 +61,7 @@ export function SiteHeader() {
                           key={area.slug}
                           href={`/${area.slug}`}
                           role="menuitem"
-                          className="block rounded-2xl px-4 py-3 text-sm font-medium text-petrol transition hover:bg-petrol/5 hover:text-gold focus:bg-petrol/5 focus:outline-none"
+                          className="block rounded-2xl px-4 py-3 text-sm font-medium text-petrol transition hover:bg-petrol/5 focus:bg-petrol/5 focus:outline-none"
                         >
                           {area.title}
                         </Link>
@@ -84,9 +83,8 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition hover:text-gold ${
-                  isActive ? "text-gold" : "text-petrol"
-                }`}
+                aria-current={isCurrent ? "page" : undefined}
+                className="text-sm font-medium text-petrol transition hover:opacity-75"
               >
                 {item.label}
               </Link>
@@ -139,7 +137,7 @@ export function SiteHeader() {
                       <Link
                         key={area.slug}
                         href={`/${area.slug}`}
-                        className="block rounded-2xl px-3 py-2 text-sm font-medium text-graphite/75 hover:bg-petrol/5 hover:text-gold"
+                        className="block rounded-2xl px-3 py-2 text-sm font-medium text-petrol hover:bg-petrol/5"
                         onClick={() => setIsOpen(false)}
                       >
                         {area.title}
