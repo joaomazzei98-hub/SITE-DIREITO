@@ -21,10 +21,14 @@ export function HeroSection() {
             decisões importantes.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={createWhatsAppUrl()} target="_blank" rel="noreferrer">
+            <ButtonLink
+              href={createWhatsAppUrl()}
+              target="_blank"
+              rel="noreferrer"
+            >
               Agendar pelo WhatsApp
             </ButtonLink>
-            <ButtonLink href="/#areas" variant="ghost">
+            <ButtonLink href="/#areas">
               Conhecer áreas de atuação
             </ButtonLink>
           </div>
