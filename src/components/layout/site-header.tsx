@@ -95,7 +95,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <a
             href={createWhatsAppUrl()}
-            className="rounded-full bg-petrol px-5 py-3 text-sm font-semibold text-ivory transition hover:-translate-y-0.5 hover:bg-ink focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
+            className="rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-petrol transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
             target="_blank"
             rel="noreferrer"
           >
@@ -149,7 +149,7 @@ export function SiteHeader() {
             ))}
             <a
               href={createWhatsAppUrl()}
-              className="mt-3 rounded-full bg-petrol px-5 py-3 text-center text-sm font-semibold text-ivory"
+              className="mt-3 rounded-full bg-[#25D366] px-5 py-3 text-center text-sm font-semibold text-petrol"
               target="_blank"
               rel="noreferrer"
             >
