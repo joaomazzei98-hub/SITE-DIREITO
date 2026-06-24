@@ -12,7 +12,7 @@ export function PracticeAreasSection() {
         <SectionHeading
           eyebrow="Áreas de atuação"
           title="Especialidades jurídicas organizadas para gerar confiança desde o primeiro contato."
-          description="Uma estrutura inicial clara para páginas de tráfego orgânico e campanhas pagas, com espaço para aprofundar copy, provas sociais e conteúdos futuros."
+          description="Conheça as principais frentes de atuação do escritório, com orientação clara, atendimento próximo e análise responsável para cada necessidade jurídica."
         />
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
