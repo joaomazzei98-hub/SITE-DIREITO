@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { PracticeAreasCarousel } from "@/components/sections/practice-areas-carousel";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -58,23 +59,9 @@ export function PracticeAreasSection() {
           </article>
         </FadeIn>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {secondaryPracticeAreas.map((area) => (
-            <FadeIn key={area.title}>
-              <Link
-                href={`/${area.slug}`}
-                className="group flex h-full flex-col rounded-[1.6rem] border border-petrol/10 bg-white/60 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gold/50 hover:shadow-soft"
-              >
-                <span className="mb-6 h-1 w-12 rounded-full bg-gold transition group-hover:w-16" />
-                <h3 className="font-serif text-2xl text-petrol">{area.title}</h3>
-                <p className="text-graphite/72 mt-4 flex-1 text-sm leading-6">
-                  {area.description}
-                </p>
-                <span className="mt-6 text-sm font-semibold text-petrol">Saiba mais</span>
-              </Link>
-            </FadeIn>
-          ))}
-        </div>
+        <FadeIn>
+          <PracticeAreasCarousel areas={secondaryPracticeAreas} />
+        </FadeIn>
       </Container>
     </section>
   );

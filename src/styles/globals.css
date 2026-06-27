@@ -43,4 +43,12 @@ a {
   .container-px {
     @apply px-5 sm:px-6 lg:px-8;
   }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
