@@ -5,7 +5,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Política de Privacidade",
   description:
-    "Política de privacidade da Mazzei e Fleming Advocacia, com informações sobre contato, dados e canais de atendimento.",
+    "Política de privacidade da Flemming & Batista, com informações sobre contato, dados e canais de atendimento.",
   path: "/politica-de-privacidade"
 });
 
@@ -22,20 +22,18 @@ export default function PoliticaDePrivacidadePage() {
           </h1>
           <div className="mt-8 space-y-6 rounded-3xl border border-petrol/10 bg-white/75 p-6 text-sm leading-7 text-graphite/75">
             <p>
-              Esta página apresenta uma estrutura inicial para a política de
-              privacidade do site. O texto definitivo deve ser revisado conforme os
-              fluxos reais de coleta de dados, ferramentas de mídia e eventuais
-              integrações futuras.
+              Este site utiliza as informações enviadas voluntariamente pelo usuário
+              apenas para viabilizar contato e atendimento inicial pelos canais indicados.
             </p>
             <p>
-              No momento, o site prioriza contato via WhatsApp. Ao iniciar uma
-              conversa, o usuário passa a utilizar a plataforma do WhatsApp, sujeita
-              às suas próprias políticas.
+              No momento, o site prioriza contato via WhatsApp. Ao iniciar uma conversa, o
+              usuário passa a utilizar a plataforma do WhatsApp, sujeita às suas próprias
+              políticas.
             </p>
             <p>
               Caso sejam adicionadas ferramentas de analytics, pixels de anúncios ou
-              formulários com armazenamento, esta política deverá ser atualizada antes
-              da publicação definitiva.
+              formulários com armazenamento, esta política deverá ser atualizada para
+              refletir os novos fluxos de tratamento de dados.
             </p>
           </div>
         </FadeIn>

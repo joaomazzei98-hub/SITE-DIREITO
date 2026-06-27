@@ -23,6 +23,13 @@ export function legalServiceSchema() {
     priceRange: "$$",
     knowsAbout: [
       "Direito Imobiliário",
+      "Contratos imobiliários",
+      "Regularização de imóveis",
+      "Compra e venda de imóveis",
+      "Locação de imóveis",
+      "Usucapião",
+      "Direito Civil",
+      "Família e Sucessões",
       "Direito Previdenciário",
       "Direito Trabalhista",
       "Cidadania Italiana",

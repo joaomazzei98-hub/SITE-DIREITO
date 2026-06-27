@@ -11,25 +11,31 @@ import { createWhatsAppUrl } from "@/utils/whatsapp";
 export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const isPracticePath = practiceAreas.some((area) => pathname === `/${area.slug}`);
+  const isPracticePath = practiceAreas.some(
+    (area) => pathname === `/${area.slug}` || pathname.startsWith(`/${area.slug}/`)
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-petrol/10 bg-ivory/90 backdrop-blur-xl">
       <div className="container-px mx-auto flex max-w-7xl items-center justify-between py-4">
         <Link href="/" className="group flex flex-col" aria-label={siteConfig.name}>
           <span className="font-serif text-xl font-semibold leading-none text-petrol">
-            Mazzei & Fleming
+            {siteConfig.name}
           </span>
           <span className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.26em] text-gold">
             Advocacia
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
+        <nav
+          className="hidden items-center gap-7 lg:flex"
+          aria-label="Navegação principal"
+        >
           {mainNavigation.map((item) => {
             const isAreasItem = item.href === "/#areas";
             const isCurrent =
-              item.href === pathname || (isAreasItem && (pathname === "/" || isPracticePath));
+              item.href === pathname ||
+              (isAreasItem && (pathname === "/" || isPracticePath));
 
             if (isAreasItem) {
               return (
@@ -49,9 +55,7 @@ export function SiteHeader() {
                     </span>
                   </Link>
 
-                  <div
-                    className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
-                  >
+                  <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
                     <div
                       role="menu"
                       className="rounded-3xl border border-petrol/10 bg-ivory p-3 shadow-soft"

@@ -5,7 +5,10 @@ export type NavItem = {
 
 export type PracticeHighlight = {
   title: string;
+  slug: string;
   description: string;
+  seoDescription: string;
+  details: string[];
 };
 
 export type PracticeArea = {
@@ -14,4 +17,5 @@ export type PracticeArea = {
   description: string;
   highlights: PracticeHighlight[];
   seoDescription: string;
+  featured?: boolean;
 };

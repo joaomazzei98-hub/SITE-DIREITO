@@ -9,7 +9,11 @@ type MetadataInput = {
   path?: string;
 };
 
-export function createMetadata({ title, description, path = "/" }: MetadataInput): Metadata {
+export function createMetadata({
+  title,
+  description,
+  path = "/"
+}: MetadataInput): Metadata {
   const url = new URL(path, siteUrl).toString();
 
   return {

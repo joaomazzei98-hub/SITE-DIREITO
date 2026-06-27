@@ -23,7 +23,7 @@ const faqs = [
 export const metadata = createMetadata({
   title: "FAQ",
   description:
-    "Perguntas frequentes sobre atendimento, contato por WhatsApp e áreas de atuação da Mazzei e Fleming Advocacia.",
+    "Perguntas frequentes sobre atendimento, contato por WhatsApp e áreas de atuação da Flemming & Batista.",
   path: "/faq"
 });
 
@@ -45,7 +45,7 @@ export default function FaqPage() {
             <FadeIn key={item.question}>
               <article className="rounded-3xl border border-petrol/10 bg-white/75 p-6">
                 <h2 className="font-serif text-2xl text-petrol">{item.question}</h2>
-                <p className="mt-3 text-sm leading-6 text-graphite/72">{item.answer}</p>
+                <p className="text-graphite/72 mt-3 text-sm leading-6">{item.answer}</p>
               </article>
             </FadeIn>
           ))}

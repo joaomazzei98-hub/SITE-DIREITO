@@ -3,10 +3,13 @@
 import { useState } from "react";
 
 import { ButtonLink } from "@/components/ui/button-link";
+import { siteConfig } from "@/data/site";
 import { createWhatsAppUrl } from "@/utils/whatsapp";
 
 const subjects = [
   "Direito Imobiliário",
+  "Direito Civil",
+  "Família e Sucessões",
   "Previdenciário",
   "Trabalhista",
   "Cidadania Europeia",
@@ -16,7 +19,7 @@ const subjects = [
 export function WhatsAppLeadForm() {
   const [subject, setSubject] = useState(subjects[0]);
 
-  const message = `Olá, encontrei o site da Mazzei e Fleming Advocacia e gostaria de atendimento sobre ${subject}.`;
+  const message = `Olá, encontrei o site da ${siteConfig.name} e gostaria de atendimento sobre ${subject}.`;
 
   return (
     <div className="rounded-[2rem] border border-petrol/10 bg-white/70 p-6 shadow-sm">
@@ -37,8 +40,8 @@ export function WhatsAppLeadForm() {
         ))}
       </select>
       <p className="mt-4 text-sm leading-6 text-graphite/70">
-        O botão abaixo abre uma conversa no WhatsApp com uma mensagem inicial
-        pronta. Nenhum dado é armazenado por este site.
+        O botão abaixo abre uma conversa no WhatsApp com uma mensagem inicial pronta.
+        Nenhum dado é armazenado por este site.
       </p>
       <ButtonLink
         href={createWhatsAppUrl(message)}

@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Contato",
   description:
-    "Entre em contato com a Mazzei e Fleming Advocacia pelo WhatsApp. Atendimento em São Paulo - Zona Norte.",
+    "Entre em contato com a Flemming & Batista pelo WhatsApp. Atendimento em São Paulo - Zona Norte.",
   path: "/contato"
 });
 
@@ -20,23 +20,21 @@ export default function ContatoPage() {
             Contato
           </p>
           <h1 className="mt-5 font-serif text-5xl leading-tight text-petrol sm:text-6xl">
-            Fale com a Mazzei e Fleming Advocacia.
+            Fale com a Flemming & Batista.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-graphite/78">
-            Conte brevemente sua necessidade e escolha o assunto principal para
-            iniciar uma conversa pelo WhatsApp.
+          <p className="text-graphite/78 mt-6 max-w-2xl text-lg leading-8">
+            Conte brevemente sua necessidade e escolha o assunto principal para iniciar
+            uma conversa pelo WhatsApp.
           </p>
           <div className="mt-8 rounded-3xl border border-petrol/10 bg-white/60 p-6 text-sm leading-7 text-graphite/75">
             <p>
-              <strong className="text-petrol">WhatsApp:</strong>{" "}
-              {siteConfig.phoneDisplay}
+              <strong className="text-petrol">WhatsApp:</strong> {siteConfig.phoneDisplay}
             </p>
             <p>
               <strong className="text-petrol">E-mail:</strong> {siteConfig.email}
             </p>
             <p>
-              <strong className="text-petrol">Localização:</strong>{" "}
-              {siteConfig.location}
+              <strong className="text-petrol">Localização:</strong> {siteConfig.location}
             </p>
           </div>
         </FadeIn>

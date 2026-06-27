@@ -33,6 +33,11 @@ export const metadata: Metadata = {
   keywords: [
     "advocacia zona norte são paulo",
     "advogado imobiliário zona norte",
+    "direito imobiliário são paulo",
+    "regularização de imóveis",
+    "contratos imobiliários",
+    "direito civil",
+    "família e sucessões",
     "advogado previdenciário são paulo",
     "advogado trabalhista são paulo",
     "cidadania italiana",

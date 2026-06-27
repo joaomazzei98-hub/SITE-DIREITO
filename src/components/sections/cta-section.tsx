@@ -17,12 +17,12 @@ export function CtaSection({
         <div className="overflow-hidden rounded-[2rem] bg-petrol px-6 py-10 text-ivory shadow-soft sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
-              Conversão direta
+              Atendimento jurídico
             </p>
             <h2 className="mt-4 max-w-2xl font-serif text-3xl leading-tight sm:text-4xl">
               {title}
             </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-ivory/72 sm:text-base">
+            <p className="text-ivory/72 mt-4 max-w-2xl text-sm leading-6 sm:text-base">
               {description}
             </p>
           </div>

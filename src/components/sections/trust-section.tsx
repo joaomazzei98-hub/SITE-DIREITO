@@ -14,8 +14,8 @@ export function TrustSection() {
       <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <SectionHeading
           eyebrow="Princípios"
-          title="Uma experiência jurídica menos fria, mais compreensível e ainda tecnicamente rigorosa."
-          description="A base visual e editorial foi pensada para transmitir seriedade sem distanciamento, favorecendo conversão em canais de contato direto."
+          title="Seriedade jurídica com escuta, clareza e acompanhamento próximo."
+          description="Você recebe orientação responsável para entender riscos, caminhos possíveis e próximos passos antes de tomar decisões importantes."
         />
 
         <div className="grid gap-4">

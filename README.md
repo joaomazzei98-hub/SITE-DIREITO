@@ -1,6 +1,6 @@
-# Mazzei e Fleming Advocacia
+# Flemming & Batista
 
-Base profissional para landing page institucional em Next.js 15, preparada para SEO local, conversão por WhatsApp, Vercel e expansão futura por outras IAs/agentes.
+Base profissional para site institucional em Next.js 15, preparada para SEO local, conversão por WhatsApp, Vercel e expansão futura por outras IAs/agentes.
 
 ## Stack
 
@@ -52,7 +52,7 @@ npm run format:check
 - `robots.txt` via `src/app/robots.ts`.
 - `sitemap.xml` via `src/app/sitemap.ts`.
 - Schema.org `LegalService` em `src/lib/seo.ts`.
-- Domínio base: `https://mazzeiefleming.com.br`.
+- Domínio base: `https://mazzei-fleming.vercel.app`.
 
 ## Notas para expansão futura
 
