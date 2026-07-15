@@ -37,6 +37,7 @@ export function SiteFooter() {
           </h2>
           <div className="text-ivory/72 mt-4 space-y-3 text-sm">
             <p>{siteConfig.phoneDisplay}</p>
+            <p>{siteConfig.phoneSecondaryDisplay}</p>
             <p>{siteConfig.email}</p>
             <a
               href={createWhatsAppUrl()}

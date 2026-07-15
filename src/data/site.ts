@@ -7,6 +7,7 @@ export const siteConfig = {
   locale: "pt_BR",
   location: "São Paulo - Zona Norte",
   phoneDisplay: "+55 11 97350-8868",
+  phoneSecondaryDisplay: "+55 11 97131-5468",
   whatsappNumber: "5511973508868",
   email: "contato@flemmingbatista.com.br",
   description:
