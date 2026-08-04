@@ -1,4 +1,4 @@
-# Flemming & Batista
+# Fleming & Batista
 
 Base profissional para site institucional em Next.js 15, preparada para SEO local, conversão por WhatsApp, Vercel e expansão futura por outras IAs/agentes.
 

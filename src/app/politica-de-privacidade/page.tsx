@@ -5,7 +5,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Política de Privacidade",
   description:
-    "Política de privacidade da Flemming & Batista, com informações sobre contato, dados e canais de atendimento.",
+    "Política de privacidade da Fleming & Batista, com informações sobre contato, dados e canais de atendimento.",
   path: "/politica-de-privacidade"
 });
 

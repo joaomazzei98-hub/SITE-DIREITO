@@ -23,7 +23,7 @@ const faqs = [
 export const metadata = createMetadata({
   title: "FAQ",
   description:
-    "Perguntas frequentes sobre atendimento, contato por WhatsApp e áreas de atuação da Flemming & Batista.",
+    "Perguntas frequentes sobre atendimento, contato por WhatsApp e áreas de atuação da Fleming & Batista.",
   path: "/faq"
 });
 

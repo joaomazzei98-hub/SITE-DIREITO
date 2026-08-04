@@ -24,7 +24,7 @@ const values = [
 export const metadata = createMetadata({
   title: "Sobre",
   description:
-    "Conheça a Flemming & Batista, escritório em São Paulo - Zona Norte com atendimento jurídico estratégico e humano.",
+    "Conheça a Fleming & Batista, escritório em São Paulo - Zona Norte com atendimento jurídico estratégico e humano.",
   path: "/sobre"
 });
 
@@ -41,7 +41,7 @@ export default function SobrePage() {
               Advocacia com técnica, presença e comunicação clara.
             </h1>
             <p className="text-graphite/78 mt-6 max-w-3xl text-lg leading-8">
-              A Flemming & Batista atua com foco em Direito Imobiliário e uma proposta
+              A Fleming & Batista atua com foco em Direito Imobiliário e uma proposta
               contemporânea: unir rigor jurídico, discrição e acolhimento para orientar
               decisões relevantes com segurança.
             </p>

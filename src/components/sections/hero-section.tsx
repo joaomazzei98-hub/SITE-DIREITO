@@ -18,7 +18,7 @@ export function HeroSection() {
             Segurança jurídica para imóveis, contratos e decisões patrimoniais.
           </h1>
           <p className="text-graphite/78 mt-7 max-w-2xl text-lg leading-8">
-            A Flemming & Batista tem foco em Direito Imobiliário, com orientação para
+            A Fleming & Batista tem foco em Direito Imobiliário, com orientação para
             regularização, compra, venda, locação, posse e conflitos envolvendo imóveis.
             As demais áreas dão suporte às necessidades civis, familiares,
             previdenciárias, trabalhistas e de cidadania.

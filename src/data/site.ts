@@ -1,7 +1,7 @@
 import type { NavItem } from "@/types/navigation";
 
 export const siteConfig = {
-  name: "Flemming & Batista",
+  name: "Fleming & Batista",
   domain: "mazzei-fleming.vercel.app",
   url: "https://mazzei-fleming.vercel.app",
   locale: "pt_BR",
