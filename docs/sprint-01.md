@@ -1,6 +1,6 @@
 # Sprint 01 — Identidade, alcance estadual e fundação de crescimento
 
-**Status:** em andamento — T1, T2, T4, T5 e T7 concluídas. Restam T3, T6 e T8
+**Status:** em andamento — T1, T2, T3, T4, T5 e T7 concluídas. Restam T6 e T8
 **Criado em:** 2026-08-04
 **Base:** commit `80d3d00`
 
@@ -73,7 +73,7 @@ O `areaServed` do schema já apontava para a cidade de São Paulo — nada a cor
 
 ---
 
-## T3 — Identidade visual e assets
+## T3 — Identidade visual e assets ✅
 
 **Lacuna:** `public/` está vazio — sem favicon, logo ou imagem de compartilhamento. O metadata declara `twitter:card = summary_large_image` sem imagem existir, então todo link compartilhado sai com card em branco.
 
@@ -85,6 +85,22 @@ Escopo:
 5. Declarar `openGraph.images` e `icons` no `layout.tsx`
 
 **Aceite:** validação no [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) e no preview do WhatsApp renderizando card completo; favicon visível na aba.
+
+**Entregue:** 33 de 33 páginas HTML agora servem `og:image` — antes eram zero. O build passou de 37 para 71 rotas, sendo 34 imagens geradas.
+
+- `src/app/icon.svg` — favicon monograma FB em petrol com filete dourado.
+- `src/app/apple-icon.tsx` — 180×180 via `next/og`, em Playfair para bater com o favicon.
+- `src/lib/og.tsx` — renderizador compartilhado do card 1200×630: fundo petrol, marca no topo, filete dourado, eyebrow em dourado e título em Playfair. O tamanho do título cai de 76px para 62px acima de 46 caracteres, para não estourar a caixa.
+- Um `opengraph-image.tsx` por rota: home, 6 áreas, 22 atividades e as 4 páginas estáticas. Áreas e atividades usam o próprio título, então cada link compartilhado mostra o assunto correto.
+
+Marca tipográfica mantida no header e no rodapé, já que não há logo em vetor (I4). Sem fotografia (I5) — a identidade se apoia em tipografia, cor e composição.
+
+**Duas armadilhas encontradas:**
+
+1. `params` é `Promise` também nas rotas de imagem no Next 15. Acessar `params.areaSlug` direto compila e falha só no prerender.
+2. O satori, motor do `next/og`, **não parseia fonte variável**. O `PlayfairDisplay[wght].ttf` do repositório google/fonts quebra com `Cannot read properties of undefined (reading '256')`. A solução foi baixar uma instância estática SemiBold (121 KB) para `src/assets/fonts/`, com a licença OFL ao lado. A fonte fica versionada no repo de propósito: assim o build não depende de acesso ao Google Fonts.
+
+**Nota sobre herança:** no App Router a imagem OG vale só para o segmento onde o arquivo está — não é herdada por rotas irmãs. Por isso `/sobre`, `/faq`, `/contato` e `/politica-de-privacidade` precisaram de arquivo próprio. Página nova sem `opengraph-image.tsx` sai sem card.
 
 ---
 
