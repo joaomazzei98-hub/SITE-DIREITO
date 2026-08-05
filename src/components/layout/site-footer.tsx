@@ -1,6 +1,13 @@
 import Link from "next/link";
 
-import { footerNavigation, siteConfig } from "@/data/site";
+import {
+  footerNavigation,
+  formatOab,
+  lawyers,
+  officeAddress,
+  officeHours,
+  siteConfig
+} from "@/data/site";
 import { createWhatsAppUrl } from "@/utils/whatsapp";
 
 export function SiteFooter() {
@@ -11,9 +18,15 @@ export function SiteFooter() {
           <p className="font-serif text-2xl font-semibold">{siteConfig.name}</p>
           <p className="text-ivory/72 mt-4 max-w-md text-sm leading-6">
             Advocacia com foco em Direito Imobiliário e atuação estratégica para pessoas,
-            famílias e patrimônios em São Paulo - Zona Norte.
+            famílias e patrimônios em toda São Paulo.
           </p>
-          <p className="text-ivory/72 mt-5 text-sm">{siteConfig.location}</p>
+          <address className="mt-5 border-l-2 border-gold pl-3 text-sm not-italic leading-6 text-ivory">
+            {officeAddress.street}
+            <br />
+            {officeAddress.city} - {officeAddress.region}, CEP {officeAddress.postalCode}
+            <br />
+            <span className="text-ivory/72">{officeHours.display}</span>
+          </address>
         </div>
 
         <div>
@@ -52,11 +65,24 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-ivory/10">
-        <div className="container-px text-ivory/58 mx-auto flex max-w-7xl flex-col gap-3 py-5 text-xs md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
+        <div className="container-px text-ivory/58 mx-auto flex max-w-7xl flex-col gap-3 py-5 text-xs md:flex-row md:items-start md:justify-between">
+          <div className="space-y-1.5">
+            <p className="text-gold">
+              {siteConfig.name} Sociedade de Advogados
+              {lawyers.map((lawyer) => (
+                <span key={lawyer.name} className="text-ivory/72 block font-normal">
+                  {lawyer.jobTitle} {lawyer.name} — {formatOab(lawyer)}
+                </span>
+              ))}
+            </p>
+            <p>
+              © {new Date().getFullYear()} {siteConfig.name}. Todos os direitos
+              reservados.
+            </p>
+          </div>
+          <p className="max-w-xs leading-5 md:text-right">
+            Conteúdo informativo. A atuação profissional depende de análise do caso.
           </p>
-          <p>Conteúdo informativo. A atuação profissional depende de análise do caso.</p>
         </div>
       </div>
     </footer>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
-import Script from "next/script";
 import type { ReactNode } from "react";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/data/site";
 import { legalServiceSchema, siteUrl } from "@/lib/seo";
 import "@/styles/globals.css";
@@ -24,15 +24,16 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteConfig.name} | Advocacia em São Paulo - Zona Norte`,
+    default: `${siteConfig.name} | Advocacia em São Paulo`,
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
   category: "Legal services",
   keywords: [
-    "advocacia zona norte são paulo",
-    "advogado imobiliário zona norte",
+    "advocacia são paulo",
+    "escritório de advocacia são paulo",
+    "advogado imobiliário são paulo",
     "direito imobiliário são paulo",
     "regularização de imóveis",
     "contratos imobiliários",
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: `${siteConfig.name} | Advocacia em São Paulo - Zona Norte`,
+    title: `${siteConfig.name} | Advocacia em São Paulo`,
     description: siteConfig.description,
     url: siteUrl,
     siteName: siteConfig.name,
@@ -70,13 +71,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
-        <Script
-          id="legal-service-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(legalServiceSchema())
-          }}
-        />
+        <JsonLd id="legal-service-schema" data={legalServiceSchema()} />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

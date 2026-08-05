@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 export const metadata = createMetadata({
   title: "Contato",
   description:
-    "Entre em contato com a Fleming & Batista pelo WhatsApp. Atendimento em São Paulo - Zona Norte.",
+    "Entre em contato com a Fleming & Batista pelo WhatsApp. Atendimento em toda São Paulo.",
   path: "/contato"
 });
 

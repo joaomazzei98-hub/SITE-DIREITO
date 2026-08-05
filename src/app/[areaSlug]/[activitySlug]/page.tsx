@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/seo/json-ld";
 import { PracticeActivityPage } from "@/components/sections/practice-activity-page";
 import { getPracticeActivity, practiceAreas } from "@/data/practice-areas";
 import { createMetadata } from "@/lib/metadata";
+import { breadcrumbSchema } from "@/lib/seo";
 
 type ActivityRouteProps = {
   params: Promise<{
@@ -46,5 +48,20 @@ export default async function ActivityPage({ params }: ActivityRouteProps) {
     notFound();
   }
 
-  return <PracticeActivityPage area={result.area} activity={result.activity} />;
+  return (
+    <>
+      <JsonLd
+        id="breadcrumb-schema"
+        data={breadcrumbSchema([
+          { name: "Início", path: "/" },
+          { name: result.area.title, path: `/${result.area.slug}` },
+          {
+            name: result.activity.title,
+            path: `/${result.area.slug}/${result.activity.slug}`
+          }
+        ])}
+      />
+      <PracticeActivityPage area={result.area} activity={result.activity} />
+    </>
+  );
 }

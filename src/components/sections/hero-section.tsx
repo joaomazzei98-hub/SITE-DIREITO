@@ -12,7 +12,7 @@ export function HeroSection() {
       <Container className="grid items-center gap-12 py-12 sm:py-14 lg:grid-cols-[1.05fr_0.95fr]">
         <FadeIn>
           <p className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-gold">
-            Direito Imobiliário em São Paulo - Zona Norte
+            Direito Imobiliário em São Paulo
           </p>
           <h1 className="max-w-4xl font-serif text-5xl leading-[0.98] text-petrol sm:text-6xl">
             Segurança jurídica para imóveis, contratos e decisões patrimoniais.

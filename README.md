@@ -2,6 +2,14 @@
 
 Base profissional para site institucional em Next.js 15, preparada para SEO local, conversão por WhatsApp, Vercel e expansão futura por outras IAs/agentes.
 
+## Marca
+
+A grafia canônica é **Fleming & Batista** — um "m". Vale para todo texto visível, metadata e nomes de pacote.
+
+Exceção conhecida: `siteConfig.email` usa `contato@flemmingbatista.com.br`, com dois "m", porque é o domínio já em uso. Divergência mantida deliberadamente até a definição do domínio próprio.
+
+O escritório fica em São Paulo e atende **toda a capital** — evite copy que restrinja o alcance a um bairro ou região.
+
 ## Stack
 
 - Next.js 15 com App Router

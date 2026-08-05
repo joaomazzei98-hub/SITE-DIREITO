@@ -75,7 +75,7 @@ export const practiceAreas: PracticeArea[] = [
       }
     ],
     seoDescription:
-      "Advocacia em Direito Imobiliário na Zona Norte de São Paulo para contratos, regularização, compra e venda, locação, posse e conflitos envolvendo imóveis."
+      "Advocacia em Direito Imobiliário em São Paulo para contratos, regularização, compra e venda, locação, posse e conflitos envolvendo imóveis."
   },
   {
     title: "Direito Civil",
@@ -235,7 +235,7 @@ export const practiceAreas: PracticeArea[] = [
       }
     ],
     seoDescription:
-      "Advogado previdenciário em São Paulo - Zona Norte para aposentadorias, benefícios do INSS e revisões."
+      "Advogado previdenciário em São Paulo para aposentadorias, benefícios do INSS e revisões."
   },
   {
     title: "Direito Trabalhista",
@@ -284,7 +284,7 @@ export const practiceAreas: PracticeArea[] = [
       }
     ],
     seoDescription:
-      "Advocacia trabalhista em São Paulo - Zona Norte para verbas rescisórias, acordos e consultoria preventiva."
+      "Advocacia trabalhista em São Paulo para verbas rescisórias, acordos e consultoria preventiva."
   },
   {
     title: "Cidadania Europeia",
