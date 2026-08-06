@@ -1,3 +1,4 @@
+import type { Article } from "@/data/articles";
 import { lawyers, officeAddress, officeHours, siteConfig } from "@/data/site";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url;
@@ -75,6 +76,31 @@ export function faqPageSchema(faqs: readonly FaqEntry[]) {
         text: faq.answer
       }
     }))
+  };
+}
+
+export function articleSchema(article: Article) {
+  const url = absoluteUrl(`/artigos/${article.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    url,
+    mainEntityOfPage: url,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
+    inLanguage: "pt-BR",
+    author: {
+      "@type": "Person",
+      name: article.author
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteUrl
+    }
   };
 }
 

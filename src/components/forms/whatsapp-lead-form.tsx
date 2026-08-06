@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { ButtonLink } from "@/components/ui/button-link";
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import { siteConfig } from "@/data/site";
 import { createWhatsAppUrl } from "@/utils/whatsapp";
 
@@ -43,14 +43,14 @@ export function WhatsAppLeadForm() {
         O botão abaixo abre uma conversa no WhatsApp com uma mensagem inicial pronta.
         Nenhum dado é armazenado por este site.
       </p>
-      <ButtonLink
+      <WhatsAppLink
         href={createWhatsAppUrl(message)}
-        target="_blank"
-        rel="noreferrer"
+        origem="formulario-contato"
+        variant="primary"
         className="mt-6 w-full"
       >
         Abrir WhatsApp
-      </ButtonLink>
+      </WhatsAppLink>
     </div>
   );
 }

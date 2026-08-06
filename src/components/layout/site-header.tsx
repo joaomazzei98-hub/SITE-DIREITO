@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import { mainNavigation, siteConfig } from "@/data/site";
 import { practiceAreas } from "@/data/practice-areas";
 import { createWhatsAppUrl } from "@/utils/whatsapp";
@@ -133,14 +134,13 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a
+          <WhatsAppLink
             href={createWhatsAppUrl()}
+            origem="header"
             className="rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-petrol transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
-            target="_blank"
-            rel="noreferrer"
           >
             Falar no WhatsApp
-          </a>
+          </WhatsAppLink>
         </div>
 
         <button
@@ -195,14 +195,13 @@ export function SiteHeader() {
                 ) : null}
               </div>
             ))}
-            <a
+            <WhatsAppLink
               href={createWhatsAppUrl()}
-              className="mt-3 rounded-full bg-[#25D366] px-5 py-3 text-center text-sm font-semibold text-petrol"
-              target="_blank"
-              rel="noreferrer"
+              origem="menu-mobile"
+              className="mt-3 inline-flex min-h-11 items-center justify-center rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-petrol"
             >
               Falar no WhatsApp
-            </a>
+            </WhatsAppLink>
           </nav>
         </div>
       ) : null}

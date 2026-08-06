@@ -1,3 +1,4 @@
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -76,15 +77,14 @@ export function ProblemsSection() {
                 <p className="text-graphite/72 mt-4 flex-1 text-sm leading-6">
                   {problem.description}
                 </p>
-                <a
+                <WhatsAppLink
                   href={createWhatsAppUrl(problem.message)}
-                  target="_blank"
-                  rel="noreferrer"
+                  origem="problemas"
                   aria-label={`Falar pelo WhatsApp sobre ${problem.title}`}
                   className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-gold/55 px-4 py-2 text-sm font-semibold text-petrol transition hover:-translate-y-0.5 hover:bg-gold/10 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
                 >
                   Conversar sobre isso
-                </a>
+                </WhatsAppLink>
               </article>
             </FadeIn>
           ))}

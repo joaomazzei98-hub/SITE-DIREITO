@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import {
   footerNavigation,
   lawyers,
@@ -54,14 +55,13 @@ export function SiteFooter() {
             <p>{siteConfig.phoneDisplay}</p>
             <p>{siteConfig.phoneSecondaryDisplay}</p>
             <p>{siteConfig.email}</p>
-            <a
+            <WhatsAppLink
               href={createWhatsAppUrl()}
-              target="_blank"
-              rel="noreferrer"
+              origem="rodape"
               className="inline-flex min-h-11 items-center rounded-full border border-gold/50 px-4 py-2 font-semibold text-ivory transition hover:bg-gold/10"
             >
               Iniciar conversa
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </div>

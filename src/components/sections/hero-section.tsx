@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -24,9 +25,9 @@ export function HeroSection() {
             previdenciárias, trabalhistas e de cidadania.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={createWhatsAppUrl()} target="_blank" rel="noreferrer">
+            <WhatsAppLink href={createWhatsAppUrl()} origem="hero" variant="primary">
               Falar pelo WhatsApp
-            </ButtonLink>
+            </WhatsAppLink>
             <ButtonLink
               href="/direito-imobiliario"
               variant="ghost"

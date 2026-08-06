@@ -1,4 +1,4 @@
-import { ButtonLink } from "@/components/ui/button-link";
+import { WhatsAppLink } from "@/components/analytics/whatsapp-link";
 import { Container } from "@/components/ui/container";
 import { createWhatsAppUrl } from "@/utils/whatsapp";
 
@@ -26,14 +26,14 @@ export function CtaSection({
               {description}
             </p>
           </div>
-          <ButtonLink
+          <WhatsAppLink
             href={createWhatsAppUrl()}
-            target="_blank"
-            rel="noreferrer"
+            origem="cta"
+            variant="primary"
             className="mt-8 lg:mt-0"
           >
             Falar com o escritório
-          </ButtonLink>
+          </WhatsAppLink>
         </div>
       </Container>
     </section>

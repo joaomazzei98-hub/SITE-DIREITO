@@ -59,6 +59,7 @@ export const mainNavigation: NavItem[] = [
 ];
 
 export const footerNavigation: NavItem[] = [
+  { label: "Artigos", href: "/artigos" },
   { label: "Direito Imobiliário", href: "/direito-imobiliario" },
   { label: "Direito Civil", href: "/direito-civil" },
   { label: "Família e Sucessões", href: "/familia-e-sucessoes" },

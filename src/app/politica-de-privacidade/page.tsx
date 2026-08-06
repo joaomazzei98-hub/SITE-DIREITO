@@ -31,9 +31,21 @@ export default function PoliticaDePrivacidadePage() {
               políticas.
             </p>
             <p>
-              Caso sejam adicionadas ferramentas de analytics, pixels de anúncios ou
-              formulários com armazenamento, esta política deverá ser atualizada para
-              refletir os novos fluxos de tratamento de dados.
+              O site utiliza medição de audiência da Vercel para acompanhar volume de
+              visitas, páginas mais acessadas e desempenho de carregamento. A medição é
+              anônima e agregada: não usa cookies, não cria identificador de usuário e não
+              permite identificar quem visitou o site. Por isso não há banner de
+              consentimento.
+            </p>
+            <p>
+              Também é registrado, de forma anônima, em qual ponto do site o visitante
+              clicou para iniciar a conversa no WhatsApp. O registro guarda apenas a
+              origem do clique, nunca o conteúdo da conversa.
+            </p>
+            <p>
+              Caso sejam adicionados pixels de anúncios ou formulários com armazenamento,
+              esta política será atualizada para refletir os novos fluxos de tratamento de
+              dados.
             </p>
           </div>
         </FadeIn>

@@ -1,6 +1,6 @@
 # Sprint 01 — Identidade, alcance estadual e fundação de crescimento
 
-**Status:** em andamento — T1, T2, T3, T4, T5, T7, T9, T10 e T11 concluídas. Restam T6 e T8
+**Status:** concluído — T1 a T11 entregues
 **Criado em:** 2026-08-04
 **Base:** commit `80d3d00`
 
@@ -174,7 +174,7 @@ Verificado no HTML gerado:
 
 ---
 
-## T6 — Analytics e medição de conversão
+## T6 — Analytics e medição de conversão ✅
 
 **Lacuna:** impossível medir quantas visitas viram conversa no WhatsApp.
 
@@ -186,6 +186,14 @@ Escopo:
 - Documentar as métricas do sprint: sessões, taxa de clique no WhatsApp, área mais visitada
 
 **Aceite:** eventos aparecendo no painel da Vercel; nenhum banner de cookie necessário; atualizar a Política de Privacidade mencionando analytics anônimo.
+
+**Entregue:** `@vercel/analytics` e `@vercel/speed-insights` no layout. O evento `whatsapp_click` sai com a propriedade `origem`, e os **8** pontos de saída do site estão cobertos: `header`, `menu-mobile`, `hero`, `cta`, `problemas`, `rodape`, `flutuante` e `formulario-contato`.
+
+Para isso foi criado `src/components/analytics/whatsapp-link.tsx`, um client component que centraliza o nome do evento e o tipo `WhatsAppOrigin` — não dá para adicionar um link de WhatsApp sem declarar de onde ele veio, porque o TypeScript exige. As classes visuais dos botões saíram de `button-link.tsx` para `button-styles.ts`, para que o componente client e o server compartilhem exatamente o mesmo estilo sem duplicação.
+
+Política de Privacidade atualizada: explica a medição anônima, o registro da origem do clique e por que não há banner de consentimento.
+
+**Como ler os números depois:** no painel da Vercel, o evento `whatsapp_click` quebrado por `origem` responde qual botão traz cliente. Se o `flutuante` dominar, o CTA do meio da página está sendo ignorado; se `problemas` performar, vale ampliar aquela seção.
 
 ---
 
@@ -212,7 +220,7 @@ Nota de manutenção: `npm run typecheck` falha se rodado logo após deletar rot
 
 ---
 
-## T8 — Blog / central de conteúdo
+## T8 — Blog / central de conteúdo ✅
 
 **Lacuna:** maior alavanca de tráfego orgânico não explorada.
 
@@ -226,6 +234,20 @@ Sprint 01 entrega a **fundação**, não o volume de artigos:
 Meta sugerida pós-sprint: 2 artigos/mês, sempre respondendo dúvida real de cliente.
 
 **Aceite:** `/artigos` lista os posts, cada post renderiza com schema `Article` válido e aparece no sitemap.
+
+**Entregue.** Verificado no servidor de produção: `/artigos` e os dois artigos respondem 200, `/artigos/nao-existe` retorna 404, e a página do artigo serve três schemas — `LegalService`, `Article` (com autor e `datePublished`) e `BreadcrumbList`.
+
+**Como publicar um artigo novo:** criar o `.mdx` em `src/content/artigos/` e acrescentar uma entrada em `src/data/articles.ts`. Listagem, rota, sitemap, schema e imagem de compartilhamento saem disso sozinhos.
+
+A separação é proposital: **metadados em TypeScript, texto em MDX**. Os metadados precisam ser tipados porque alimentam sitemap, schema e listagem; o texto precisa ser agradável de escrever. Frontmatter dentro do MDX exigiria mais um parser sem ganho real.
+
+`src/mdx-components.tsx` mapeia `h2`, `p`, `ul` e companhia para os tokens do projeto. Foi por aí em vez do plugin de tipografia do Tailwind — uma dependência a menos e controle exato sobre o resultado.
+
+**Dependências acrescentadas:** `@next/mdx`, `@mdx-js/loader`, `@mdx-js/react` e `@types/mdx`. O README pede cautela com bibliotecas novas; a justificativa é que escrever artigo jurídico dentro de template literal em `.ts` seria inviável para quem redige.
+
+**Descoberta:** o link para `/artigos` entrou no rodapé, conforme o escopo. Vale decidir depois se ele merece lugar no menu principal — hoje o menu tem 5 itens e o blog só ganha tração se for encontrável.
+
+**Nota:** o link inline "Direito Imobiliário" no rodapé do artigo tem menos de 44px de altura. É link de texto dentro de frase, caso que a própria WCAG 2.5.8 dispensa do tamanho mínimo — forçar quebraria o fluxo do parágrafo.
 
 ---
 
@@ -328,4 +350,19 @@ Tarefas acrescentadas em 2026-08-06, após a revisão do preview:
 npm run typecheck && npm run lint && npm run build
 ```
 
-Baseline em `80d3d00`: os três passam limpos, 37 páginas estáticas geradas. Nenhuma tarefa pode regredir isso.
+Baseline em `80d3d00`: os três passam limpos, 37 páginas estáticas geradas.
+
+**Estado no fechamento:** os três continuam limpos, agora com 83 rotas — 37 páginas originais mais as imagens de compartilhamento, o blog e suas rotas.
+
+⚠️ **`npm run format:check` falha neste checkout, e já falhava antes do sprint.** São 45 arquivos, incluindo vários que ninguém tocou: o Git do Windows converte para CRLF na hora do checkout e o Prettier espera LF. Não é problema de código. A correção seria um `.gitattributes` com `* text=auto eol=lf`, mas isso reescreve o repositório inteiro e merece commit próprio, separado deste sprint.
+
+## Pendências ao fim do sprint
+
+| Item | Situação |
+| --- | --- |
+| Registro da sociedade na OAB/SP | Nunca informado. O rodapé exibe a razão social sem número |
+| E-mail com dois "m" | Mantido por decisão do cliente |
+| Google Business Profile | Fora do código, ainda não criado. É o que mais move ranqueamento local |
+| Fotos reais | Adiadas |
+| Focus trap no menu mobile | Melhoria possível, não bloqueante |
+| `/artigos` no menu principal | Decisão de navegação em aberto |
