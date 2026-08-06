@@ -8,7 +8,7 @@ export const serviceFaqs: FaqItem[] = [
   {
     question: "O primeiro contato pode ser feito pelo WhatsApp?",
     answer:
-      "Sim. O WhatsApp é o canal principal de conversão do site e permite uma triagem inicial objetiva."
+      "Sim. O WhatsApp é o canal principal de atendimento do escritório e permite entender a sua necessidade logo na primeira conversa."
   },
   {
     question: "O atendimento é presencial ou pode ser a distância?",

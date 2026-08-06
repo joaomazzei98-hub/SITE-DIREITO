@@ -30,9 +30,12 @@ export const officeHours = {
 } as const;
 
 /**
- * Exigência do Provimento 205/2021 (CFOAB): identificação do profissional
- * responsável. Novos advogados entram aqui e aparecem no rodapé, na página
- * Sobre e no schema automaticamente.
+ * Advogados responsáveis. Novos nomes entram aqui e aparecem no rodapé, na
+ * página Sobre e no schema automaticamente.
+ *
+ * `oabRegion` e `oabNumber` não são exibidos hoje: o escritório pediu a
+ * retirada do número em 2026-08-06. Os dados ficam aqui para que voltar a
+ * mostrar seja apenas usar `formatOab` nos pontos de exibição.
  */
 export const lawyers = [
   {

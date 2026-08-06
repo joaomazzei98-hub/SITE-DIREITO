@@ -17,7 +17,7 @@ export default function PoliticaDePrivacidadePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
             Privacidade
           </p>
-          <h1 className="mt-5 font-serif text-5xl leading-tight text-petrol sm:text-6xl">
+          <h1 className="mt-5 font-serif text-4xl leading-tight text-petrol sm:text-5xl lg:text-6xl">
             Política de Privacidade
           </h1>
           <div className="mt-8 space-y-6 rounded-3xl border border-petrol/10 bg-white/75 p-6 text-sm leading-7 text-graphite/75">

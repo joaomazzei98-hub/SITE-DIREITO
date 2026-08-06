@@ -1,6 +1,6 @@
 # Sprint 01 — Identidade, alcance estadual e fundação de crescimento
 
-**Status:** em andamento — T1, T2, T3, T4, T5 e T7 concluídas. Restam T6 e T8
+**Status:** em andamento — T1, T2, T3, T4, T5, T7, T9, T10 e T11 concluídas. Restam T6 e T8
 **Criado em:** 2026-08-04
 **Base:** commit `80d3d00`
 
@@ -229,6 +229,83 @@ Meta sugerida pós-sprint: 2 artigos/mês, sempre respondendo dúvida real de cl
 
 ---
 
+## T9 — Remover o número da OAB do site ✅
+
+**Origem:** decisão do cliente em 2026-08-06, revertendo parte da T4.
+
+Escopo: retirar `OAB/SP 255.429` dos três lugares onde a T4 colocou — rodapé, card de equipe em `/sobre` e `identifier` do schema. Nome e cargo da advogada permanecem.
+
+Manter o campo `oabNumber` em `lawyers` (`src/data/site.ts`), apenas sem renderizar. Restaurar depois passa a ser mudança de uma linha em cada ponto de exibição, sem precisar reconstruir a estrutura.
+
+**Ressalva registrada:** o Provimento 205/2021 do CFOAB trata a identificação do profissional como parte do dever de informação na publicidade advocatícia. Retirar o número é decisão do escritório e fica documentada aqui; o disclaimer do rodapé e o nome da advogada continuam no ar. Vale confirmar com a Ivani antes de publicar em produção.
+
+**Aceite:** `grep -rn "255.429" src` retorna vazio fora de `src/data/site.ts`; build limpo.
+
+**Entregue:** número retirado do rodapé, do card de equipe e do `identifier` do schema. Verificado no HTML servido: nenhuma das 7 rotas testadas contém "OAB" ou "255.429". O card de equipe passou a exibir o cargo no lugar da inscrição. `formatOab` continua exportado e sem uso — é o gancho para restaurar.
+
+---
+
+## T10 — Reescrever o texto da seção de áreas ✅
+
+**Lacuna:** a descrição em `practice-areas-section.tsx` está escrita da perspectiva do site, não do escritório:
+
+> "O site passa a destacar imóveis, contratos, regularização e conflitos imobiliários como foco principal do escritório, mantendo atendimento nas demais áreas estratégicas."
+
+"O site passa a destacar" é linguagem de changelog — descreve uma mudança de projeto para quem construiu a página, não o serviço para quem vai contratar. O visitante não tem contexto do que o site era antes.
+
+Reescrever na voz do escritório, falando do cliente e do problema dele. O título logo acima ("Direito Imobiliário em primeiro plano, com suporte jurídico completo.") já está correto e serve de referência de tom.
+
+Aproveitar para varrer o resto do copy atrás do mesmo vício de perspectiva.
+
+**Aceite:** nenhum texto visível se refere ao site em si; leitura aprovada pelo cliente.
+
+**Entregue.** Texto novo:
+
+> "O escritório concentra a atuação em imóveis, contratos, regularização e conflitos imobiliários. As demais áreas acompanham as questões civis, familiares, previdenciárias, trabalhistas e de cidadania que costumam surgir junto com essas decisões."
+
+A varredura achou o mesmo vício em outro lugar — a primeira resposta do FAQ dizia que o WhatsApp era "o canal principal de **conversão do site**" e falava em "triagem". São termos de quem opera o funil, não de quem procura advogado. Reescrito para "canal principal de atendimento do escritório" e "entender a sua necessidade logo na primeira conversa".
+
+Duas ocorrências de "este site" foram mantidas de propósito: na Política de Privacidade e no aviso do formulário. Ali o site *é* o sujeito correto da frase, porque o assunto é tratamento de dados.
+
+---
+
+## T11 — Revisar e ajustar a versão mobile ✅
+
+Auditoria feita em 375×812 sobre o build de produção. O que está bom: **não há overflow horizontal** em nenhuma página, os cards do carrossel não cortam texto, e o header ocupa 77px, altura razoável.
+
+Três problemas reais:
+
+**a) Tipografia grande demais no mobile.** O `h1` da home renderiza a 48px numa viewport de 375px — a classe é `text-5xl` já no breakpoint base. As páginas internas usam o mesmo padrão `text-5xl sm:text-6xl`. Falta um degrau menor antes do `sm`.
+
+**b) 24 alvos de toque abaixo de 44px.** Os piores são os pontinhos de navegação do carrossel, com **10×10px** — praticamente impossíveis de acertar. As setas do carrossel já estão em 44px e servem de referência. Links de lista ficam entre 36 e 40px de altura.
+
+**c) O menu mobile não se comporta como menu.** Ao abrir: não trava a rolagem do body (`overflow` continua `visible`), não fecha com `Esc`, e não prende o foco. Dá para rolar a página inteira por trás do menu aberto.
+
+Escopo adicional: revisar a `/sobre` com a nova seção de equipe e o rodapé, ambos criados nesta sprint e ainda não vistos em tela pequena.
+
+**Aceite:** nenhum alvo de toque interativo abaixo de 44px; `h1` com degrau próprio no mobile; menu com trava de rolagem, fechamento por `Esc` e foco contido; sem overflow horizontal em nenhuma rota.
+
+**Entregue.** Medido de novo em 375×812 sobre o build de produção:
+
+| Métrica | Antes | Depois |
+| --- | --- | --- |
+| Alvos de toque abaixo de 44px | 24 | **0** |
+| Alvos abaixo de 24px | 5 | 0 |
+| `h1` da home | 48px | **36px** |
+| Menu trava a rolagem | não | sim |
+| Menu fecha no `Esc` | não | sim, devolvendo o foco ao botão |
+| Overflow horizontal | nenhum | nenhum |
+
+**a) Tipografia.** Faltava um degrau antes do `sm`. Os `h1` passaram de `text-5xl sm:text-6xl` para `text-4xl sm:text-5xl lg:text-6xl` em 8 arquivos, e o `h2` da equipe em `/sobre` desceu um nível junto. Desktop fica igual — o `lg` recupera o tamanho original.
+
+**b) Alvos de toque.** Os pontinhos do carrossel eram o caso grave, com 10×10px. A correção mantém o ponto pequeno no visual e envolve num botão de 44×44 — a área clicável cresce sem mudar o desenho. Os demais (listas de atividades, links do rodapé, logo do header, submenu mobile e os CTAs "Conversar sobre isso") ganharam `min-h-11`. No rodapé, o `space-y-3` da lista saiu junto: com 44px por item ele viraria espaçamento duplicado.
+
+**c) Menu mobile.** Agora trava a rolagem do body enquanto está aberto, fecha no `Esc` devolvendo o foco ao botão, e fecha sozinho ao navegar. Ganhou `aria-controls`, rótulo que alterna entre "Abrir menu" e "Fechar menu", e `max-h` com rolagem própria para caber em telas baixas.
+
+**Ressalva:** não há focus trap completo — com o menu aberto, `Tab` ainda alcança elementos atrás dele. O `Esc`, o retorno de foco e a trava de rolagem cobrem a maior parte do problema; um trap real pede biblioteca ou bastante código manual. Fica anotado como possível melhoria, não como pendência bloqueante.
+
+---
+
 ## Ordem sugerida de execução
 
 Agrupada por dependência e por quanto destrava o resto:
@@ -239,6 +316,11 @@ Agrupada por dependência e por quanto destrava o resto:
 4. **T3** — identidade visual, depois que a marca está congelada.
 5. **T6** — analytics, para começar a medir com o site já ajustado.
 6. **T8** — blog, a peça de maior fôlego.
+
+Tarefas acrescentadas em 2026-08-06, após a revisão do preview:
+
+7. **T9 + T10** — ajustes de conteúdo, rápidos e independentes entre si.
+8. **T11** — revisão mobile. Deixada por último de propósito: mexe em tipografia e alvos de toque de componentes que T9 e T10 ainda vão alterar.
 
 ## Validação do sprint
 

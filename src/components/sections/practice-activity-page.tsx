@@ -21,7 +21,7 @@ export function PracticeActivityPage({ area, activity }: PracticeActivityPagePro
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
               {area.title}
             </p>
-            <h1 className="mt-5 font-serif text-5xl leading-tight text-petrol sm:text-6xl">
+            <h1 className="mt-5 font-serif text-4xl leading-tight text-petrol sm:text-5xl lg:text-6xl">
               {activity.title}
             </h1>
             <p className="text-graphite/78 mt-6 max-w-3xl text-lg leading-8">
@@ -66,7 +66,7 @@ export function PracticeActivityPage({ area, activity }: PracticeActivityPagePro
                   <Link
                     key={item.slug}
                     href={`/${area.slug}/${item.slug}`}
-                    className="block py-4 text-sm font-semibold text-petrol transition first:pt-0 last:pb-0 hover:text-gold"
+                    className="flex min-h-11 items-center py-3 text-sm font-semibold text-petrol transition hover:text-gold"
                   >
                     {item.title}
                   </Link>

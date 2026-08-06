@@ -133,19 +133,25 @@ export function PracticeAreasCarousel({ areas }: PracticeAreasCarouselProps) {
         ))}
       </div>
 
-      <div className="mt-4 flex justify-center gap-2">
+      {/* O botão tem 44px de altura para o toque; o ponto visível é o span. */}
+      <div className="mt-2 flex justify-center">
         {areas.map((area, index) => (
           <button
             key={area.slug}
             type="button"
             aria-label={`Ir para ${area.title}`}
+            aria-current={activeIndex === index ? "true" : undefined}
             onClick={() => scrollToIndex(index)}
-            className={`h-2.5 rounded-full transition ${
-              activeIndex === index
-                ? "w-8 bg-gold"
-                : "w-2.5 bg-petrol/20 hover:bg-gold/70"
-            }`}
-          />
+            className="group flex h-11 w-11 items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
+            <span
+              className={`block h-2.5 rounded-full transition ${
+                activeIndex === index
+                  ? "w-8 bg-gold"
+                  : "w-2.5 bg-petrol/20 group-hover:bg-gold/70"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

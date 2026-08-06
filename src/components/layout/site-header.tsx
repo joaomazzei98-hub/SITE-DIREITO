@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { mainNavigation, siteConfig } from "@/data/site";
 import { practiceAreas } from "@/data/practice-areas";
@@ -11,14 +11,50 @@ import { createWhatsAppUrl } from "@/utils/whatsapp";
 export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const isPracticePath = practiceAreas.some(
     (area) => pathname === `/${area.slug}` || pathname.startsWith(`/${area.slug}/`)
   );
 
+  /** Fecha o menu ao navegar, para não ficar aberto sobre a nova página. */
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  /**
+   * Com o menu aberto: trava a rolagem do body e fecha no Esc, devolvendo o
+   * foco ao botão que abriu.
+   */
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-petrol/10 bg-ivory/90 backdrop-blur-xl">
       <div className="container-px mx-auto flex max-w-7xl items-center justify-between py-4">
-        <Link href="/" className="group flex flex-col" aria-label={siteConfig.name}>
+        <Link
+          href="/"
+          className="group flex min-h-11 flex-col justify-center"
+          aria-label={siteConfig.name}
+        >
           <span className="font-serif text-xl font-semibold leading-none text-petrol">
             {siteConfig.name}
           </span>
@@ -108,10 +144,12 @@ export function SiteHeader() {
         </div>
 
         <button
+          ref={toggleRef}
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-petrol/15 text-petrol lg:hidden"
-          aria-label="Abrir menu"
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={isOpen}
+          aria-controls="menu-mobile"
           onClick={() => setIsOpen((current) => !current)}
         >
           <span className="sr-only">Menu</span>
@@ -124,8 +162,14 @@ export function SiteHeader() {
       </div>
 
       {isOpen ? (
-        <div className="border-t border-petrol/10 bg-ivory lg:hidden">
-          <nav className="container-px mx-auto flex max-w-7xl flex-col gap-1 py-4">
+        <div
+          id="menu-mobile"
+          className="max-h-[calc(100dvh-4.75rem)] overflow-y-auto border-t border-petrol/10 bg-ivory lg:hidden"
+        >
+          <nav
+            className="container-px mx-auto flex max-w-7xl flex-col gap-1 py-4"
+            aria-label="Navegação principal"
+          >
             {mainNavigation.map((item) => (
               <div key={item.href}>
                 <Link
@@ -141,7 +185,7 @@ export function SiteHeader() {
                       <Link
                         key={area.slug}
                         href={`/${area.slug}`}
-                        className="block rounded-2xl px-3 py-2 text-sm font-medium text-petrol hover:bg-petrol/5"
+                        className="flex min-h-11 items-center rounded-2xl px-3 text-sm font-medium text-petrol hover:bg-petrol/5"
                         onClick={() => setIsOpen(false)}
                       >
                         {area.title}

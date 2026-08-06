@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import {
   footerNavigation,
-  formatOab,
   lawyers,
   officeAddress,
   officeHours,
@@ -33,10 +32,13 @@ export function SiteFooter() {
           <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">
             Navegação
           </h2>
-          <ul className="text-ivory/72 mt-4 space-y-3 text-sm">
+          <ul className="text-ivory/72 mt-2 text-sm">
             {footerNavigation.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition hover:text-gold">
+                <Link
+                  href={item.href}
+                  className="inline-flex min-h-11 items-center transition hover:text-gold"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -56,7 +58,7 @@ export function SiteFooter() {
               href={createWhatsAppUrl()}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex rounded-full border border-gold/50 px-4 py-2 font-semibold text-ivory transition hover:bg-gold/10"
+              className="inline-flex min-h-11 items-center rounded-full border border-gold/50 px-4 py-2 font-semibold text-ivory transition hover:bg-gold/10"
             >
               Iniciar conversa
             </a>
@@ -71,7 +73,7 @@ export function SiteFooter() {
               {siteConfig.name} Sociedade de Advogados
               {lawyers.map((lawyer) => (
                 <span key={lawyer.name} className="text-ivory/72 block font-normal">
-                  {lawyer.jobTitle} {lawyer.name} — {formatOab(lawyer)}
+                  {lawyer.jobTitle} {lawyer.name}
                 </span>
               ))}
             </p>

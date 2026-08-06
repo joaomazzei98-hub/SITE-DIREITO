@@ -19,7 +19,7 @@ export default function ContatoPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
             Contato
           </p>
-          <h1 className="mt-5 font-serif text-5xl leading-tight text-petrol sm:text-6xl">
+          <h1 className="mt-5 font-serif text-4xl leading-tight text-petrol sm:text-5xl lg:text-6xl">
             Fale com a Fleming & Batista.
           </h1>
           <p className="text-graphite/78 mt-6 max-w-2xl text-lg leading-8">

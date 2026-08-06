@@ -1,7 +1,7 @@
 import { CtaSection } from "@/components/sections/cta-section";
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
-import { formatOab, lawyers } from "@/data/site";
+import { lawyers } from "@/data/site";
 import { createMetadata } from "@/lib/metadata";
 
 function getInitials(name: string) {
@@ -43,7 +43,7 @@ export default function SobrePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
               Sobre o escritório
             </p>
-            <h1 className="mt-5 font-serif text-5xl leading-tight text-petrol sm:text-6xl">
+            <h1 className="mt-5 font-serif text-4xl leading-tight text-petrol sm:text-5xl lg:text-6xl">
               Advocacia com técnica, presença e comunicação clara.
             </h1>
             <p className="text-graphite/78 mt-6 max-w-3xl text-lg leading-8">
@@ -76,7 +76,7 @@ export default function SobrePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
               Equipe
             </p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight text-petrol sm:text-5xl">
+            <h2 className="mt-4 font-serif text-3xl leading-tight text-petrol sm:text-4xl lg:text-5xl">
               Quem conduz o seu caso.
             </h2>
           </FadeIn>
@@ -95,9 +95,6 @@ export default function SobrePage() {
                     {lawyer.name}
                   </h3>
                   <p className="mt-2 text-sm font-semibold tracking-wide text-gold">
-                    {formatOab(lawyer)}
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-graphite/70">
                     {lawyer.jobTitle}
                   </p>
                 </article>

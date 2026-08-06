@@ -1,10 +1,4 @@
-import {
-  formatOab,
-  lawyers,
-  officeAddress,
-  officeHours,
-  siteConfig
-} from "@/data/site";
+import { lawyers, officeAddress, officeHours, siteConfig } from "@/data/site";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url;
 
@@ -44,8 +38,7 @@ export function legalServiceSchema() {
     employee: lawyers.map((lawyer) => ({
       "@type": "Person",
       name: lawyer.name,
-      jobTitle: lawyer.jobTitle,
-      identifier: formatOab(lawyer)
+      jobTitle: lawyer.jobTitle
     })),
     priceRange: "$$",
     knowsAbout: [

@@ -9,7 +9,7 @@ export default function NotFound() {
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
             Página não encontrada
           </p>
-          <h1 className="mt-5 font-serif text-5xl text-petrol">
+          <h1 className="mt-5 font-serif text-4xl text-petrol sm:text-5xl">
             Este caminho não existe.
           </h1>
           <p className="mt-5 text-graphite/75">

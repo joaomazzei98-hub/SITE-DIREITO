@@ -17,7 +17,7 @@ export function PracticeAreasSection() {
         <SectionHeading
           eyebrow="Áreas de atuação"
           title="Direito Imobiliário em primeiro plano, com suporte jurídico completo."
-          description="O site passa a destacar imóveis, contratos, regularização e conflitos imobiliários como foco principal do escritório, mantendo atendimento nas demais áreas estratégicas."
+          description="O escritório concentra a atuação em imóveis, contratos, regularização e conflitos imobiliários. As demais áreas acompanham as questões civis, familiares, previdenciárias, trabalhistas e de cidadania que costumam surgir junto com essas decisões."
         />
 
         <FadeIn>

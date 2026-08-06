@@ -14,7 +14,7 @@ export function HeroSection() {
           <p className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-gold">
             Direito Imobiliário em São Paulo
           </p>
-          <h1 className="max-w-4xl font-serif text-5xl leading-[0.98] text-petrol sm:text-6xl">
+          <h1 className="max-w-4xl font-serif text-4xl leading-tight text-petrol sm:text-5xl sm:leading-[0.98] lg:text-6xl">
             Segurança jurídica para imóveis, contratos e decisões patrimoniais.
           </h1>
           <p className="text-graphite/78 mt-7 max-w-2xl text-lg leading-8">
@@ -51,7 +51,7 @@ export function HeroSection() {
                 <Link
                   key={activity.slug}
                   href={`/${primaryPracticeArea.slug}/${activity.slug}`}
-                  className="text-ivory/84 block py-4 text-sm font-semibold transition first:pt-0 last:pb-0 hover:text-gold"
+                  className="text-ivory/84 flex min-h-11 items-center py-3 text-sm font-semibold transition hover:text-gold"
                 >
                   {activity.title}
                 </Link>
