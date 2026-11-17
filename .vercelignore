@@ -1,0 +1,13 @@
+# Arquivos locais e credenciais
+.env
+.env*.local
+CHAVES API E SENHAS.docx
+.tools/
+supabase/.temp/
+
+# Saídas locais de testes
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.next-dev*.log

@@ -1,0 +1,63 @@
+# Verificação local do assistente jurídico
+
+| Verificação | Resultado |
+| --- | --- |
+| Suíte local de regras, consentimento e integração SQL | 78 verificações aprovadas |
+| Chrome com Playwright | 7 verificações aprovadas |
+| Compilação do Next.js, lint e tipos | Aprovados |
+| Auditoria de dependências de produção | Nenhum aviso retornado |
+| Auditoria incluindo ferramentas de desenvolvimento | Sete entradas moderadas na cadeia de lint, relacionadas ao minimatch |
+| Consulta de acesso ao modelo pela OpenAI | HTTP 200 |
+| Primeira classificação com pergunta fictícia | HTTP 429 por falta de créditos |
+| Nova chamada em 6 de novembro de 2026 | Resposta estruturada; Direito Imobiliário confirmado |
+| Avaliação OpenAI com a instrução inicial | 33 de 36 acertos (91,7%) |
+| Avaliação OpenAI após ajustar a instrução | 36 de 36 acertos (100%) no mesmo conjunto |
+| Checagens adicionais após o ajuste | 3 de 3: saudação, pedido sem área definida e assunto fora do escopo |
+| Homologação local com PostgreSQL descartável e serviços simulados | 9 verificações aprovadas; suíte local total de 87 verificações |
+| Banco Supabase de homologação em 6 de novembro de 2026 | Duas migrações aplicadas; 10 tabelas com RLS, leitura anônima bloqueada e fila instalada |
+| Resend em 6 de novembro de 2026 | Envio direto aceito pela API e marcado como entregue ao endereço oficial de teste no painel |
+| Chat no navegador com OpenAI e Supabase reais | Classificação em Direito Imobiliário, nenhuma gravação na revisão e um único pedido após a confirmação |
+| Fila com Resend real | Um envio aceito; segunda execução da fila sem novo envio; entrega confirmada no painel do provedor |
+| Painel com Supabase Auth real | Bloqueado antes do login e do segundo fator; TOTP aceito, alteração para Em análise auditada e sessão encerrada |
+| Webhook do Resend com Supabase real em 6 de novembro de 2026 | Evento assinado recebido com HTTP 200 e status atualizado de Aceito para Entregue. Requisição sem assinatura recusada com HTTP 400 |
+| Suíte após a atualização conversacional em 9 de novembro de 2026 | 95 verificações aprovadas, incluindo contexto, remoção de identificadores e validação das fontes |
+| Navegador após a atualização conversacional | 7 verificações aprovadas |
+| Classificação contextualizada com OpenAI real em 9 de novembro de 2026 | 36 de 36 acertos no conjunto sintético já utilizado anteriormente |
+| Navegador com OpenAI e Supabase reais em 9 de novembro de 2026 | Duas mensagens fictícias em sequência, com reconhecimento de contrato não assinado, locação residencial e identificação do inquilino |
+| Encaminhamento humano em 10 de novembro de 2026 | 100 verificações locais aprovadas. Ausência ou insuficiência de fontes e sugestões de cenários inventados levam a Atendimento humano |
+| Acesso ao atendimento em 10 de novembro de 2026 | 8 verificações de navegador aprovadas. O botão abre a página de contato tanto na resposta sem base suficiente quanto em falha da API |
+| Integração real do encaminhamento em 10 de novembro de 2026 | A pergunta sobre multa em locação recebeu HTTP 200, requires_human verdadeiro e ação atendimento. A resposta indicou Atendimento humano sem criar um cenário |
+| Respostas básicas após revisar o encaminhamento em 10 de novembro de 2026 | 105 verificações locais aprovadas. Catálogo inicial com 11 temas e referências oficiais nas seis áreas |
+| OpenAI e Supabase reais com a base inicial em 10 de novembro de 2026 | Usucapião, escritura versus registro, FGTS e BPC receberam explicações com fonte, sem encaminhamento obrigatório. A pergunta sobre direito individual à usucapião manteve o atendimento humano |
+| Escolha de área em 10 de novembro de 2026 | Erro reproduzido ao clicar em Direito Imobiliário. Após a correção, os seis botões pedem a dúvida, sem encaminhamento humano. 106 verificações locais e o fluxo dos seis botões no navegador aprovados |
+| Continuação após escolher uma área em 10 de novembro de 2026 | A escolha de Direito Imobiliário retornou a ação perguntar. Em seguida, a pergunta sobre usucapião recebeu explicação com fonte e sem encaminhamento obrigatório |
+| Remoção das cotas de mensagens em 10 de novembro de 2026 | 107 verificações locais aprovadas. Uma conversa de 65 mensagens passou mesmo com contadores antigos esgotados. No servidor com integrações reais, 66 mensagens na mesma sessão retornaram HTTP 200, incluindo uma resposta da IA com fonte após superar os antigos limites |
+| Documentos para alugar um apartamento em 10 de novembro de 2026 | 108 verificações locais aprovadas. A pergunta exata do usuário recebeu identidade, CPF e comprovação de renda com fonte do Procon-SP, sem encaminhamento obrigatório. A continuação sobre fiador também foi respondida com fonte |
+| FAQ de Direito Imobiliário em 12 de novembro de 2026 | 111 testes locais aprovados. Com OpenAI e Supabase de homologação, as 25 perguntas gerais receberam resposta com a fonte esperada e os três casos de controle seguiram para atendimento humano |
+| Navegador em tela de 393 px em 12 de novembro de 2026 | A escolha da área pediu a dúvida. As perguntas sobre documentos e trabalho autônomo receberam respostas com links. Um pedido de cálculo da multa mostrou Atendimento humano e o botão abriu a página de contato |
+| Ampliação das demais áreas em 12 de novembro de 2026 | 118 testes locais aprovados. A base chegou a 95 perguntas, incluindo 70 perguntas novas ou revisadas em Civil, Família e Sucessões, Consumidor, Trabalhista, Previdenciário e Cidadania Europeia |
+| Avaliação das demais áreas com OpenAI e Supabase de homologação | 65 de 70 perguntas gerais passaram na primeira rodada. Cinco falhas incluíram quatro respostas HTTP 503 e uma triagem indevida de urgência em pergunta geral sobre rescisão. As cinco passaram na repetição após o ajuste, com a fonte esperada e sem encaminhamento obrigatório. Sete casos de controle foram encaminhados corretamente |
+| Fontes e categoria de Cidadania Europeia | Os 44 endereços oficiais da expansão responderam HTTP 200. A categoria foi adicionada ao banco de homologação e aceita pela consulta de fontes. O registro de pedido com a categoria foi validado em PostgreSQL descartável |
+| Navegador após a ampliação | Em tela de 393 px, as sete áreas ficaram disponíveis. O chat respondeu com fonte oficial sobre nacionalidade portuguesa, acompanhou a mudança para Previdenciário e abriu a página de contato a partir de um pedido de análise individual |
+
+A classificação local acertou os 36 exemplos das seis áreas. Com o saldo disponível, a primeira rodada no modelo deixou três perguntas curtas sem área. A instrução revisada orienta a sugerir uma área provável quando o assunto está claro, mesmo que faltem detalhes para analisar o caso. A segunda rodada superou a meta de 95% no conjunto fictício inicial. Como o mesmo conjunto foi reutilizado após o ajuste, o resultado descreve esse teste e não mede a precisão com perguntas reais. Para repetir a avaliação, execute npm run eval:ai.
+
+O catálogo básico usa resumos de conceitos conferidos em fontes oficiais. A [FAQ imobiliária](faq-imobiliario.md) e a [FAQ das demais áreas](faq-demais-areas.md) foram conferidas em 12 de novembro de 2026 e têm revisão prevista até 12 de dezembro de 2026. Resumos fora do período de revisão deixam de ser usados. A aprovação jurídica institucional permanece pendente antes da publicação.
+
+A avaliação imobiliária usou perguntas de teste com formulações variadas e continuações sobre comprovante de renda, fiador, vistoria e condomínio. Foram verificados o conteúdo da resposta, a referência oficial e o encaminhamento. Os três casos de controle pediam o cálculo de uma multa contratual, a análise de uma cobrança de pintura ou orientação sobre um tema sem cobertura na base. O resultado se refere à amostra de homologação.
+
+Nos testes do banco descartável, a migração foi aplicada com papéis sintéticos. Foram verificados bloqueio de acesso direto, rollback em caso de falha na confirmação, idempotência, atribuições, notas institucionais, limites, validade das fontes e exclusão mútua na fila de envio.
+
+No navegador, a demonstração exibiu o aviso antes de iniciar, enviou uma pergunta à API local, mostrou a resposta, devolveu o foco após Escape e não sobrepôs os botões em tela de 320 px. Também bloqueou origem externa, mensagens sem sessão, anexos e corpo acima do limite.
+
+No primeiro ciclo local, não foram executados testes com login Supabase real, envio de e-mail, eventos reais do provedor ou dados de visitantes. O conteúdo jurídico, as mensagens de urgência e a política de retenção aguardam revisão. A demonstração permanece desativada nas configurações padrão e só roda quando habilitada localmente.
+
+Na homologação local, as rotas de sessão, triagem, revisão, gravação, fila e confirmação de entrega foram executadas em sequência. O teste de painel simulou a identidade do Supabase e consultou perfis no banco descartável. Os testes de e-mail verificaram assinatura, envio sem dados da solicitação, eventos antecipados, devolução e falha de rede.
+
+O projeto dedicado fleming-batista-homologacao foi preparado via SQL Editor e o cadastro público foi desativado. Após salvar as chaves do Supabase, a conexão de serviço teve acesso à tabela de solicitações e a chave publicável recebeu HTTP 401 na mesma consulta.
+
+O primeiro teste integrado usou um pedido fictício e o endereço oficial de teste do Resend. A conta administrativa temporária foi removida após o teste. O pedido sintético e o registro da atualização foram mantidos no ambiente de homologação para conferência. O status desse primeiro e-mail permaneceu Aceito no banco porque o webhook ainda estava desconectado no momento do envio.
+
+No segundo teste, outro pedido fictício foi enviado ao endereço oficial de teste do Resend. A fila gravou inicialmente o status Aceito. O Resend enviou um evento `email.delivered` assinado para um endpoint HTTPS temporário. A rota de confirmação validou a assinatura e o Supabase passou a registrar Entregue automaticamente. O endpoint público encaminhava apenas a confirmação de teste e retornava HTTP 404 para a página inicial e o painel administrativo. Após a validação, o webhook foi desativado e o túnel foi encerrado. O recebimento contínuo depende da configuração de um endpoint HTTPS permanente e de seu segredo de assinatura no ambiente de publicação.
+
+Em 9 de novembro de 2026, o modo integrado passou a redigir respostas contextualizadas. O modelo recebe até quatro pares de pergunta e resposta, interpreta mudanças de assunto e produz termos de busca para a base. Uma conversa fictícia com a OpenAI real verificou saudação, preparação para análise de contrato de aluguel, continuação sobre a assinatura, identificação do inquilino, mudança para demissão e agradecimento. Checagens adicionais confirmaram a apresentação das seis áreas e o encerramento sem nova pergunta. A consulta ao banco de homologação retornou zero fontes aprovadas. Assim, a melhoria disponível cobre conversa, esclarecimentos e preparação do atendimento. Explicações jurídicas fundamentadas dependem do cadastro e da aprovação das fontes pela equipe.

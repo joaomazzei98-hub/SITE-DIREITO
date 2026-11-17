@@ -1,14 +1,15 @@
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { PublicMetrics } from "@/components/analytics/public-metrics";
+import { ChatLauncher } from "@/components/chat/chat-launcher";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/data/site";
 import { legalServiceSchema, siteUrl } from "@/lib/seo";
+import { chatbotMode } from "@/server/chat/settings";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -77,8 +78,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
-        <Analytics />
-        <SpeedInsights />
+        {chatbotMode() !== "disabled" && <ChatLauncher />}
+        <PublicMetrics />
       </body>
     </html>
   );

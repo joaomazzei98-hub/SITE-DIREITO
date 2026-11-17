@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
 import { createMetadata } from "@/lib/metadata";
+import { chatbotMode } from "@/server/chat/settings";
 
 export const metadata = createMetadata({
   title: "Política de Privacidade",
@@ -21,6 +22,25 @@ export default function PoliticaDePrivacidadePage() {
             Política de Privacidade
           </h1>
           <div className="mt-8 space-y-6 rounded-3xl border border-petrol/10 bg-white/75 p-6 text-sm leading-7 text-graphite/75">
+            {chatbotMode() === "live" && (
+              <div className="space-y-2">
+                <h2 className="font-semibold text-petrol">Assistente virtual</h2>
+                <p>
+                  As perguntas podem ser processadas pela OpenAI para classificar o
+                  assunto e buscar material revisado. Evite nomes completos, documentos e
+                  detalhes sensíveis. O site não grava o histórico integral da conversa.
+                </p>
+                <p>
+                  Se pedir atendimento, você pode revisar o resumo e confirmar seu envio.
+                  O escritório guarda os dados confirmados para tratar da solicitação. Ao
+                  abrir o WhatsApp, aplicam-se também as políticas desse serviço.
+                </p>
+                <p>
+                  Use a página de contato do escritório para perguntas sobre privacidade
+                  ou solicitações relacionadas aos seus dados.
+                </p>
+              </div>
+            )}
             <p>
               Este site utiliza as informações enviadas voluntariamente pelo usuário
               apenas para viabilizar contato e atendimento inicial pelos canais indicados.

@@ -8,6 +8,10 @@ coverage
 .next-dev*.log
 .env
 .env*.local
+/CHAVES API E SENHAS.docx
+/supabase/.temp/
 *.tsbuildinfo
+playwright-report
+test-results
 
 .vercel
