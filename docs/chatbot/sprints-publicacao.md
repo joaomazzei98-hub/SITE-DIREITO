@@ -4,7 +4,7 @@ Plano iniciado em 17 de novembro de 2026.
 
 Cada sprint termina com apresentação da entrega e pedido de autorização. Após a confirmação do usuário, executar o commit, enviar a branch e fazer o deploy no ambiente previsto para aquela sprint. Conferir o resultado publicado antes de iniciar a próxima sprint.
 
-O repositório é SITE-DIREITO e a branch de trabalho é codex/chatbot-juridico. A configuração local da Vercel aponta para o projeto site-direito. O destino remoto e suas variáveis precisam ser conferidos antes do deploy.
+O repositório é SITE-DIREITO e a branch de trabalho é codex/chatbot-juridico. A configuração local da Vercel aponta para o projeto site-direito. O painel confirmou o vínculo com esse repositório e a branch main para produção.
 
 | Sprint                                   | Entrega e ações                                                                                                                                                                                                                                               | Verificação de aceite                                                                                        | Deploy após autorização                                                                                           |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,9 @@ O repositório é SITE-DIREITO e a branch de trabalho é codex/chatbot-juridico.
 
 ## Sprint 1
 
-Estado em 17 de novembro de 2026. Preparação concluída. O usuário autorizou o commit, o envio da branch e o deploy em prévia técnica. Após a publicação, conferir o endereço gerado e o resultado do build.
+Estado em 17 de novembro de 2026. Sprint concluída e publicada após autorização do usuário. Commit 54b805aecdbc5ab7150684e87c851a98a8560877 enviado para codex/chatbot-juridico.
+
+O deploy 5RBKKSbikb6YSuwCaRxJJ9t8QRpM ficou Ready e a página inicial foi conferida no navegador. A [prévia técnica](https://site-direito-hhac5quoy-joaomazzei98-7432s-projects.vercel.app/) exige autenticação da Vercel e o chat depende da ativação na sprint 2.
 
 A entrega reúne o chatbot desenvolvido nas etapas anteriores, com 95 perguntas nas sete áreas, triagem contextual, encaminhamento humano, formulário de atendimento, painel e integrações já implementadas.
 
@@ -28,7 +30,23 @@ A primeira prévia serve para verificar o pacote publicado. Na sprint 2, a confi
 
 Foram aprovados os 118 testes locais, o lint, a checagem de tipos e o build de produção. Os nove testes de navegador passaram no Microsoft Edge, incluindo seleção de área, tela de 320 px, resposta da API de demonstração e encaminhamento humano.
 
-A consulta remota pelo conector da Vercel falhou ao estabelecer a conexão. Conferir o projeto, o destino Preview e as variáveis remotas ao recuperar o acesso, antes de enviar a branch e publicar.
+A consulta remota pelo conector falhou e a autenticação da CLI estava expirada. O acesso foi recuperado pelo painel. O deploy automático da branch foi acompanhado até concluir, com o commit e o ambiente Preview conferidos. O painel de variáveis estava vazio.
+
+## Sprint 2
+
+Estado em 19 de novembro de 2026. O usuário autorizou o commit, a configuração das chaves já salvas no Preview da branch codex/chatbot-juridico e o deploy da sprint 2. Após a publicação, conferir o chat pelo endereço HTTPS.
+
+Preparação do chat para o ambiente Preview da branch codex/chatbot-juridico. As chaves já configuradas para OpenAI e Supabase de homologação foram reunidas em .env.preview.local, um arquivo ignorado pelo Git e pelo upload. O projeto de banco de teste foi conferido e foi gerado um segredo de sessão próprio para a prévia.
+
+O servidor passa a aceitar as duas origens exatas fornecidas pela Vercel no ambiente Preview, quando CHATBOT_SITE_ORIGIN estiver vazio. Uma origem configurada explicitamente continua tendo precedência. O ambiente de produção exige a origem configurada. O comportamento e o bloqueio de origens externas têm teste de regressão.
+
+Os 119 testes locais, o lint, a checagem de tipos e o build com o chat habilitado passaram. O projeto Supabase de homologação estava pausado e foi retomado pelo painel, com a restauração acompanhada até a confirmação de conclusão. A OpenAI respondeu à classificação real de uma pergunta sobre documentos para locação.
+
+Após a retomada, uma pergunta de cada uma das sete áreas recebeu resposta com a fonte esperada e sem encaminhamento obrigatório no servidor local com OpenAI e Supabase reais. A origem externa foi recusada. No navegador local, foram conferidos os sete botões de área, documentos para locação, continuação sobre trabalho autônomo, telas de 393 e 320 px e encaminhamento para a página de contato em um pedido de cálculo individual. Nenhum erro de JavaScript foi registrado.
+
+A configuração a aplicar depois da autorização compreende CHATBOT_ENABLED=1, CHATBOT_MODE=live, CHATBOT_SIGNING_SECRET, OPENAI_API_KEY, OPENAI_MODEL, SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY e SUPABASE_SERVICE_KEY. CHATBOT_ADMIN_ENABLED, CHATBOT_HANDOFF_ENABLED e CHATBOT_EMAIL_ENABLED ficam em 0 nesta etapa. CHATBOT_SITE_ORIGIN fica vazio para usar as origens do Preview.
+
+Aplicar essas variáveis somente ao ambiente Preview e à branch codex/chatbot-juridico. Guardar as chaves e o segredo de sessão como valores secretos no servidor. Depois de o usuário autorizar o commit e o deploy, publicar e conferir o chat pelo endereço HTTPS, a seleção das sete áreas, uma pergunta básica, uma continuação, o encaminhamento humano e a tela estreita. O teste pelo endereço público depende dessa publicação. A autenticação da prévia também deve ser conferida no celular.
 
 ## Revisão periódica
 

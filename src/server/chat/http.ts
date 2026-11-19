@@ -8,11 +8,18 @@ export function json(data: unknown, status = 200) {
 }
 
 export function sameOrigin(request: Request) {
+  const origin = request.headers.get("origin");
+  if (!origin) return false;
   const configuredOrigin = process.env.CHATBOT_SITE_ORIGIN;
-  const origin =
-    configuredOrigin ||
-    (process.env.NODE_ENV === "development" ? new URL(request.url).origin : null);
-  return origin !== null && request.headers.get("origin") === origin;
+  if (configuredOrigin) return origin === configuredOrigin;
+  if (process.env.NODE_ENV === "development")
+    return origin === new URL(request.url).origin;
+  if (process.env.VERCEL === "1" && process.env.VERCEL_ENV === "preview") {
+    return [process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL].some(
+      (hostname) => Boolean(hostname) && origin === "https://" + hostname
+    );
+  }
+  return false;
 }
 
 export async function boundedBody(request: Request, maxBytes: number) {

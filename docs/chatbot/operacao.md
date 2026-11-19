@@ -31,6 +31,10 @@ Execute os testes com npm test, npm run lint e npm run build. Para navegador, in
 
 ## Persistência e segurança
 
+Em Preview da Vercel, CHATBOT_SITE_ORIGIN pode ficar vazio. O servidor reconhece somente os endereços exatos de VERCEL_URL e VERCEL_BRANCH_URL quando VERCEL=1 e VERCEL_ENV=preview. Uma origem explicitamente configurada tem precedência. Em produção, configure a origem HTTPS canônica em CHATBOT_SITE_ORIGIN. [Variáveis de sistema da Vercel](https://vercel.com/docs/environment-variables/system-environment-variables)
+
+Para a prévia de homologação, configure as variáveis somente em Preview para a branch codex/chatbot-juridico. O arquivo ignorado .env.preview.local contém a preparação local dessa configuração, com o banco de homologação e um segredo de sessão próprio. As chaves devem ser transferidas para o ambiente do servidor após a autorização de publicação da sprint 2.
+
 - Os endpoints públicos verificam origem, tamanho e formato. As sessões expiram após 30 minutos de inatividade e no máximo duas horas. A quantidade de mensagens por conversa, hora, dia ou mês é livre. A criação de sessões, o registro de pedidos e o login têm limites próprios no banco.
 - A OpenAI recebe a pergunta atual e o contexto recente com remoção de identificadores óbvios. O formulário de contato segue seu fluxo próprio. A classificação e a redação contextualizada usam duas chamadas com store: false. O tratamento de dados pelo provedor precisa ser revisado antes do uso real.
 - O pedido exige revisão do conteúdo e confirmação explícita. O comprovante assinado vale por dez minutos, pertence à sessão e fica inválido se o conteúdo mudar. A transação grava pedido, contato, prova de confirmação e estado de encaminhamento uma única vez.
