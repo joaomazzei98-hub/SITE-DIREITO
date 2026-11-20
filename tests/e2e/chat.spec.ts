@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { legalAreas } from "../../src/lib/chat/contracts";
+import { legalAreas, noticeVersion } from "../../src/lib/chat/contracts";
 
 async function openChat(page: Page) {
   await page.goto("/");
@@ -166,4 +166,68 @@ test("Demonstração mantém painel, registros e e-mail bloqueados", async ({
       await request.post("/api/intakes", { headers: { Origin: baseURL! }, data: {} })
     ).status()
   ).toBe(503);
+});
+
+test("Atendimento só por WhatsApp exige revisão e confirmação antes de mostrar o link", async ({
+  page
+}) => {
+  let confirmed = 0;
+  await page.route("**/api/chat/session", (route) =>
+    route.fulfill({ json: { demo: true, channels: ["whatsapp"] } })
+  );
+  await page.route("**/api/intakes", async (route) => {
+    const body = route.request().postDataJSON();
+    if (body.action === "preview") {
+      await route.fulfill({
+        json: { draft: body.draft, receipt: "synthetic-review-receipt" }
+      });
+    } else {
+      expect(body.confirmation.confirmed).toBe(true);
+      expect(body.confirmation.noticeVersion).toBe(noticeVersion);
+      expect(body.confirmation.draft.channel).toBe("whatsapp");
+      confirmed++;
+      await route.fulfill({
+        json: {
+          message:
+            "Solicitação registrada. Abra o WhatsApp e envie a mensagem quando quiser.",
+          whatsappUrl: "https://wa.me/5511000000000?text=Protocolo%3A%20teste"
+        }
+      });
+    }
+  });
+  const dialog = await openChat(page);
+  await dialog.getByRole("button", { name: "Iniciar conversa", exact: true }).click();
+  await dialog.getByRole("button", { name: "Pedir atendimento", exact: true }).click();
+  await expect(dialog.getByRole("combobox", { name: "Canal", exact: true })).toHaveValue(
+    "whatsapp"
+  );
+  await expect(dialog.getByRole("option", { name: "E-mail", exact: true })).toHaveCount(
+    0
+  );
+  await dialog.getByLabel("Primeiro nome", { exact: true }).fill("Visitante");
+  await dialog
+    .getByLabel("Seu telefone com DDD", { exact: true })
+    .fill("(11) 00000-0000");
+  await dialog
+    .getByLabel("Resumo para o escritório", { exact: true })
+    .fill("Desejo atendimento para revisar uma locação.");
+  await dialog.getByRole("button", { name: "Revisar pedido", exact: true }).click();
+  await expect(
+    dialog.getByRole("heading", { name: "Confira seu pedido", exact: true })
+  ).toBeVisible();
+  expect(confirmed).toBe(0);
+  await expect(
+    dialog.getByRole("link", { name: "Abrir WhatsApp", exact: true })
+  ).toHaveCount(0);
+  await expect(
+    dialog.getByRole("button", { name: "Confirmar solicitação", exact: true })
+  ).toBeDisabled();
+  await dialog.getByRole("checkbox").check();
+  await dialog
+    .getByRole("button", { name: "Confirmar solicitação", exact: true })
+    .click();
+  await expect(
+    dialog.getByRole("link", { name: "Abrir WhatsApp", exact: true })
+  ).toHaveAttribute("href", "https://wa.me/5511000000000?text=Protocolo%3A%20teste");
+  expect(confirmed).toBe(1);
 });

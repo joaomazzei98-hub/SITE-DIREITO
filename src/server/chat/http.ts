@@ -22,6 +22,19 @@ export function sameOrigin(request: Request) {
   return false;
 }
 
+export function actionRequest(requestHeaders: Headers): Request | null {
+  try {
+    // Preview deliberately leaves CHATBOT_SITE_ORIGIN empty. An empty string
+    // must use the Host fallback before constructing the Request.
+    const target =
+      process.env.CHATBOT_SITE_ORIGIN || "http://" + requestHeaders.get("host");
+    const request = new Request(target, { headers: requestHeaders });
+    return sameOrigin(request) ? request : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function boundedBody(request: Request, maxBytes: number) {
   if (
     request.headers.get("content-type")?.split(";")[0].trim() !== "application/json" ||

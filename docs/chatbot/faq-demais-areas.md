@@ -1,6 +1,6 @@
 # FAQ das demais áreas
 
-Respostas gerais do Assistente virtual da Fleming & Batista para revisão jurídica do escritório antes da publicação em produção. Conferência original das fontes em 2026-11-12, com revisão prevista até 2026-12-12. A revisão técnica da sprint 3 não constitui aprovação jurídica institucional.
+Respostas gerais do Assistente virtual da Fleming & Batista para revisão jurídica do escritório. Por solicitação do usuário em 19/11/2026, essa validação será feita depois da implementação das sprints. Conferência original das fontes em 2026-11-12, com revisão prevista até 2026-12-12. A revisão técnica não constitui aprovação jurídica institucional.
 
 Cidadania Europeia cobre os procedimentos italianos e portugueses. Direito do Consumidor permanece no escopo do chat.
 

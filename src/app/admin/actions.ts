@@ -12,20 +12,16 @@ import {
   staffState
 } from "@/server/chat/admin";
 import { serviceDatabase } from "@/server/chat/database";
-import { sameOrigin } from "@/server/chat/http";
+import { actionRequest } from "@/server/chat/http";
 import { consumeBudget } from "@/server/chat/limits";
 import { signingSecret } from "@/server/chat/session";
 
 async function allowedAction(limited = false) {
   if (!adminEnabled()) return false;
   const requestHeaders = await headers();
-  const origin = requestHeaders.get("origin");
-  if (!origin) return false;
-  const host = requestHeaders.get("host");
-  const expected = process.env.CHATBOT_SITE_ORIGIN ?? "http://" + host;
+  const request = actionRequest(requestHeaders);
+  if (!request) return false;
   try {
-    const request = new Request(expected, { headers: requestHeaders });
-    if (!sameOrigin(request)) return false;
     if (!limited) return true;
     const secret = signingSecret();
     return Boolean(secret && (await consumeBudget("login", request, secret)));

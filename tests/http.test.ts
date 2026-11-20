@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { sameOrigin } from "../src/server/chat/http";
+import { actionRequest, sameOrigin } from "../src/server/chat/http";
 
 test("Confere a origem configurada, as duas URLs da prévia e a exigência em produção", (t) => {
   const keys = [
@@ -72,4 +72,49 @@ test("Confere a origem configurada, as duas URLs da prévia e a exigência em pr
   Object.assign(process.env, { NODE_ENV: "development" });
   assert.equal(sameOrigin(request(preview)), true);
   assert.equal(sameOrigin(request(branch)), false);
+});
+
+test("Ações do painel aceitam origem vazia configurada em Preview sem aceitar outro site", (t) => {
+  const keys = [
+    "NODE_ENV",
+    "CHATBOT_SITE_ORIGIN",
+    "VERCEL",
+    "VERCEL_ENV",
+    "VERCEL_URL",
+    "VERCEL_BRANCH_URL"
+  ];
+  const before = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
+  t.after(() => {
+    for (const key of keys) {
+      if (before[key] === undefined) delete process.env[key];
+      else process.env[key] = before[key];
+    }
+  });
+  Object.assign(process.env, {
+    NODE_ENV: "production",
+    CHATBOT_SITE_ORIGIN: "",
+    VERCEL: "1",
+    VERCEL_ENV: "preview",
+    VERCEL_URL: "site-unique.vercel.app",
+    VERCEL_BRANCH_URL: "site-git-chatbot.vercel.app"
+  });
+  const headers = new Headers({
+    host: "site-unique.vercel.app",
+    origin: "https://site-unique.vercel.app"
+  });
+  assert.ok(actionRequest(headers));
+  headers.set("origin", "https://site-git-chatbot.vercel.app");
+  assert.ok(actionRequest(headers));
+  headers.set("origin", "https://attacker.example.invalid");
+  assert.equal(actionRequest(headers), null);
+  headers.delete("origin");
+  assert.equal(actionRequest(headers), null);
+  headers.set("origin", "https://site-unique.vercel.app");
+  process.env.VERCEL_ENV = "production";
+  assert.equal(actionRequest(headers), null);
+  process.env.CHATBOT_SITE_ORIGIN = "https://www.flemingbatista.com.br";
+  headers.set("origin", process.env.CHATBOT_SITE_ORIGIN);
+  assert.ok(actionRequest(headers));
+  process.env.CHATBOT_SITE_ORIGIN = "not-a-url";
+  assert.equal(actionRequest(headers), null);
 });

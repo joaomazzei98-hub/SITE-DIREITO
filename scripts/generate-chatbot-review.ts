@@ -22,7 +22,7 @@ const escape = (value: string) =>
       })[char]!
   );
 
-const heading = `Respostas gerais do Assistente virtual da Fleming & Batista para revisão jurídica do escritório antes da publicação em produção. Conferência original das fontes em ${basicFaqCheckedOn}, com revisão prevista até ${basicFaqReviewUntil}. A revisão técnica da sprint 3 não constitui aprovação jurídica institucional.\n\n`;
+const heading = `Respostas gerais do Assistente virtual da Fleming & Batista para revisão jurídica do escritório. Por solicitação do usuário em 19/11/2026, essa validação será feita depois da implementação das sprints. Conferência original das fontes em ${basicFaqCheckedOn}, com revisão prevista até ${basicFaqReviewUntil}. A revisão técnica não constitui aprovação jurídica institucional.\n\n`;
 const faqMarkdown = (faq: (typeof basicFaq)[number], level: string) =>
   `${level} ${faq.question}\n\n${faq.excerpt} [${faq.title}](${faq.url})\n\n**Encaminhar ao atendimento humano quando** ${faq.reviewWhen}\n`;
 

@@ -80,8 +80,5 @@ export async function staffState(auth: Awaited<ReturnType<typeof staffAuth>>) {
   const assurance = await auth.auth.mfa.getAuthenticatorAssuranceLevel();
   if (assurance.error) throw new Error("Admin unavailable");
   if (assurance.data.currentLevel === "aal2") return { state: "ready", profile } as const;
-  if (assurance.data.nextLevel === "aal2" || profile.role === "administrador") {
-    return { state: "mfa", profile } as const;
-  }
-  return { state: "ready", profile } as const;
+  return { state: "mfa", profile } as const;
 }

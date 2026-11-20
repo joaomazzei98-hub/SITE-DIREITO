@@ -4,6 +4,8 @@ Plano iniciado em 17 de novembro de 2026.
 
 Cada sprint termina com apresentação da entrega e pedido de autorização. Após a confirmação do usuário, executar o commit, enviar a branch e fazer o deploy no ambiente previsto para aquela sprint. Conferir o resultado publicado antes de iniciar a próxima sprint.
 
+Em 19 de novembro de 2026, o usuário pediu implementar as sprints restantes antes de validar juridicamente as respostas. A revisão do conteúdo passa para depois da implementação. Isso não registra aprovação jurídica das FAQs nem altera a autorização ao final de cada sprint para commit e deploy. A publicação de produção continua sendo uma ação separada, apresentada com o destino e a configuração concretos.
+
 O repositório é SITE-DIREITO e a branch de trabalho é codex/chatbot-juridico. A configuração local da Vercel aponta para o projeto site-direito. O painel confirmou o vínculo com esse repositório e a branch main para produção.
 
 | Sprint                                   | Entrega e ações                                                                                                                                                                                                                                               | Verificação de aceite                                                                                        | Deploy após autorização                                                                                           |
@@ -52,7 +54,7 @@ As 11 variáveis foram guardadas como Secret somente no ambiente Preview e na br
 
 ## Sprint 3
 
-Estado em 19 de novembro de 2026. O usuário autorizou o commit e o deploy desta sprint em Preview para revisão do escritório. A publicação e a conferência do ambiente serão executadas com essa autorização. A revisão jurídica institucional e as decisões de privacidade permanecem pendentes do responsável. A autorização de publicação da prévia não equivale a essa aprovação.
+Estado em 19 de novembro de 2026. Implementação publicada após autorização, no commit 65a7b8f5f9d22f3a912e7c246f6e83c07384e389. O deploy dpl_6rdj9iFXvkqQ3dySEUQVua1iSDDn ficou Ready em Preview, com build de 49 segundos. A resposta de documentos para locação, a continuação sobre renda de autônomo, o aviso de urgência, o contato humano e o acesso à política sem perder a conversa foram conferidos no ambiente publicado. A tela de 320 px e o endereço estável da branch também foram conferidos, sem erros de JavaScript observados. A revisão jurídica institucional permanece pendente e foi adiada pelo usuário.
 
 O [caderno de revisão](revisao-sprint3.html) reúne as 95 respostas nas sete áreas, cada uma com sua fonte e condição de encaminhamento, além da matriz de dados, proposta de retenção e pontos que precisam do escritório. O comando npm run review:chatbot gera esse arquivo e os dois documentos de FAQ a partir do mesmo catálogo. O modo --check verifica se os documentos continuam sincronizados. A validade original até 12 de dezembro foi preservada, sem prorrogação automática.
 
@@ -64,9 +66,31 @@ A filtragem passou a cobrir também CNPJ, número de processo no padrão CNJ, CE
 
 As 52 URLs distintas do catálogo foram consultadas. Houve 46 respostas HTTP 200 e seis HTTP 403 na Câmara dos Deputados. Os bloqueios da consulta direta não foram tratados como revogação da norma. As páginas da Lei do Inquilinato, CDC e CLT ficaram disponíveis pela pesquisa web. A disponibilidade de uma URL não atesta a correção jurídica de cada resumo. Foram conferidos também o material de locação do Procon-SP, a Resolução CNJ 35 e alterações, orientação de cidadania italiana e portuguesa e documentação dos provedores. A referência de locação foi direcionada à página SAC do Procon-SP, que contém as perguntas pertinentes.
 
-Os 136 testes locais e os dez testes de navegador passaram. Lint, tipos e sincronização do caderno passaram. O build com o chat habilitado foi conferido. Uma verificação visual adicional no Edge passou, com capturas da abertura e urgência em 320 px e do caderno em 320 e 1280 px, 95 itens no documento, sem transbordamento horizontal nem erros de JavaScript. Esses testes de navegador usam o modo de demonstração e serviços simulados. Não houve nova rodada de conversa com a IA real nesta sprint.
+Os 136 testes locais e os dez testes de navegador passaram. Lint, tipos e sincronização do caderno passaram. O build com o chat habilitado foi conferido. Uma verificação visual adicional no Edge passou, com capturas da abertura e urgência em 320 px e do caderno em 320 e 1280 px, 95 itens no documento, sem transbordamento horizontal nem erros de JavaScript. Os testes locais de navegador usam o modo de demonstração e serviços simulados. Após a publicação, perguntas de locação e continuação também foram conferidas com a IA real, conforme registrado no estado da sprint.
 
-A tentativa de abrir um servidor local com as credenciais de homologação foi bloqueada pela revisão automática com a mensagem blocked by policy. A conferência visual foi concluída pelo servidor de demonstração do Playwright, sem serviços externos. A verificação global de formatação aponta 54 arquivos anteriores à sprint. A formatação dos arquivos desta entrega foi conferida separadamente, sem alteração dos demais arquivos do site. O fechamento desta sprint depende da revisão do escritório e da autorização do usuário para commit e deploy em Preview.
+A tentativa de abrir um servidor local com as credenciais de homologação foi bloqueada pela revisão automática com a mensagem blocked by policy. A conferência visual local foi concluída pelo servidor de demonstração do Playwright, sem serviços externos. A verificação global de formatação apontou 54 arquivos anteriores à sprint. A formatação dos arquivos da entrega foi conferida separadamente. O commit e o deploy em Preview foram autorizados e concluídos. A revisão jurídica foi adiada a pedido do usuário.
+
+## Sprint 4 — preparação técnica
+
+Em 20 de novembro de 2026, o usuário autorizou o commit e o deploy da preparação técnica desta etapa no ambiente Preview. A publicação e a conferência serão executadas com essa autorização. Foi corrigida a criação do Request das ações do painel para aceitar CHATBOT_SITE_ORIGIN vazio no Preview da Vercel. O bloqueio de origens externas e a exigência de origem configurada em produção permanecem. Toda a equipe passa a precisar de segundo fator, incluindo atendentes e advogados.
+
+O painel da Vercel confirmou www.flemingbatista.com.br com configuração válida e atribuição a Production. O código e os modelos de ambiente usam esse domínio como canônico. O usuário escolheu WhatsApp e painel da equipe para o lançamento, sem notificações por e-mail. O WhatsApp mantém o número já usado pelo site, 5511973508868. A configuração de Resend, remetente, destinatário, webhook e agendamento de e-mail fica fora desta etapa.
+
+O painel Supabase mostrou fleming-batista-homologacao e um projeto de outra aplicação, rachar, pausado. Não foi identificado banco de produção para este site. O outro projeto não foi alterado. O Resend abriu sem sessão autenticada. As credenciais locais encontradas são de homologação. Não foi criado projeto, alterada senha, emitida credencial, enviada notificação ou aplicada migração externa nesta preparação.
+
+O comando npm run prepare:database monta .tools/banco-producao.sql com as três migrações existentes, seus resumos SHA-256 e uma transação única para um banco novo e vazio. Não inclui contatos, contas, fontes sintéticas ou credenciais e não executa o SQL. O pacote foi testado em PostgreSQL descartável, incluindo o enum de Cidadania, tabelas vazias e bloqueio de leitura pelos papéis públicos.
+
+O modelo .env.production.example explicita a origem HTTPS, painel, atendimento e o canal WhatsApp. O e-mail fica desativado conforme a escolha do usuário. O primeiro administrador ainda será decidido pelo escritório. Nenhuma conta foi criada em nome de uma pessoa não indicada. O cadastro e o autenticador real deverão ser conferidos no projeto de destino antes de ativar o recebimento de pedidos no painel. A prévia publicada continua usando o contato existente, com os controles de painel e pedidos armazenados desativados até a preparação operacional ser autorizada e concluída.
+
+Os 145 testes locais passaram e os 11 cenários de navegador foram conferidos, com serviços externos simulados. O fluxo de WhatsApp exige revisão e confirmação, gera uma única solicitação mesmo em reenvio e inclui somente o protocolo no link. A opção de e-mail não é exibida quando desativada, e o processador de e-mails fica indisponível mesmo com credenciais antigas presentes. O teste de navegador não abre o WhatsApp nem envia mensagens. Lint, tipos e build com chat habilitado passaram. A primeira tentativa de build esbarrou na cadeia de certificados ao buscar as fontes Google. A execução com NODE_USE_SYSTEM_CA=1 usou as autoridades do sistema e concluiu, sem desativar a verificação TLS. Nenhuma integração real nova foi ativada nesta etapa.
+
+## Sprint 5 — preparação da publicação
+
+Implementação da checagem de configuração e roteiro de publicação preparada localmente. Não houve merge na main, alteração de variáveis de produção ou publicação no domínio público.
+
+O comando npm run check:release lê um arquivo .local explicitamente informado e imprime apenas o resultado das checagens, sem valores de variáveis. Produção exige origem canônica, URL pública consistente, banco diferente da homologação, segredo de sessão independente, controles explícitos e configuração compatível dos canais. Se e-mail estiver habilitado, verifica dependências, remetente e destinatário fora do modo de teste, assinatura do webhook e segredo da fila. Verificações de contas reais, migrações aplicadas, entregas, autorização e conteúdo ficam identificadas separadamente como manuais. configurationValid não atesta prontidão operacional ou aprovação jurídica.
+
+A configuração atual de Preview passou na checagem. A configuração de produção ainda não existe e não foi inventada. A próxima execução em Preview e o teste de canais reais dependem do fechamento operacional da sprint 4. Após a autorização de produção, a sprint 5 deve usar o roteiro em operacao.md para publicar o commit aprovado e conferir a reversão.
 
 ## Revisão periódica
 

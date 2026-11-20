@@ -2,8 +2,8 @@ import type { NavItem } from "@/types/navigation";
 
 export const siteConfig = {
   name: "Fleming & Batista",
-  domain: "mazzei-fleming.vercel.app",
-  url: "https://mazzei-fleming.vercel.app",
+  domain: "www.flemingbatista.com.br",
+  url: "https://www.flemingbatista.com.br",
   locale: "pt_BR",
   location: "São Paulo - SP",
   phoneDisplay: "+55 11 97350-8868",

@@ -13,6 +13,8 @@
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
     "review:chatbot": "tsx scripts/generate-chatbot-review.ts",
+    "check:release": "tsx scripts/check-chatbot-release.ts",
+    "prepare:database": "tsx scripts/prepare-chatbot-database.ts",
     "eval:ai": "tsx --env-file=.env.local tests/ai-evaluation.ts"
   },
   "dependencies": {

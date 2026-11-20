@@ -116,6 +116,7 @@ test("Homologação local do pedido e do e-mail com serviços externos simulados
     CRON_SECRET: cronSecret,
     RESEND_API_KEY: "synthetic-resend-key",
     RESEND_WEBHOOK_SECRET: webhookSecret,
+    CHATBOT_WHATSAPP_NUMBER: "",
     OPENAI_API_KEY: "synthetic-openai-key",
     VERCEL: "1"
   };
@@ -457,7 +458,7 @@ test("Homologação local do pedido e do e-mail com serviços externos simulados
   );
 
   await t.test(
-    "Painel exige perfil ativo e segundo fator para administrador",
+    "Painel exige perfil ativo e segundo fator para toda a equipe",
     async () => {
       const admin = randomUUID();
       const inactive = randomUUID();
@@ -470,6 +471,16 @@ test("Homologação local do pedido e do e-mail com serviços externos simulados
       assert.equal((await staffState(identity(inactive))).state, "denied");
       assert.equal((await staffState(identity(admin))).state, "mfa");
       assert.equal((await staffState(identity(admin, "aal2"))).state, "ready");
+      for (const role of ["atendente", "advogado"] as const) {
+        const staff = randomUUID();
+        await database.query("insert into auth.users values ($1)", [staff]);
+        await database.query(
+          "insert into public.chatbot_admin_profiles values ($1,'Equipe de teste',$2,true)",
+          [staff, role]
+        );
+        assert.equal((await staffState(identity(staff))).state, "mfa");
+        assert.equal((await staffState(identity(staff, "aal2"))).state, "ready");
+      }
     }
   );
 
@@ -489,4 +500,107 @@ test("Homologação local do pedido e do e-mail com serviços externos simulados
       else Object.assign(process.env, { NODE_ENV: nodeEnv });
     }
   });
+
+  await t.test(
+    "WhatsApp sozinho registra uma vez, gera link sem dados do visitante e não envia e-mail",
+    async () => {
+      const keys = [
+        "CHATBOT_SITE_ORIGIN",
+        "CHATBOT_EMAIL_ENABLED",
+        "CHATBOT_WHATSAPP_NUMBER"
+      ];
+      const before = Object.fromEntries(keys.map((key) => [key, process.env[key]]));
+      const sentBefore = outbound;
+      const countBefore = (await database.query("select * from public.chatbot_intakes"))
+        .rows.length;
+      try {
+        Object.assign(process.env, {
+          CHATBOT_SITE_ORIGIN: origin,
+          CHATBOT_EMAIL_ENABLED: "0",
+          CHATBOT_WHATSAPP_NUMBER: "5511000000000"
+        });
+        failSubmit = false;
+        const started = await start(visitorRequest("/api/chat/session", 9));
+        assert.equal(started.status, 200);
+        assert.deepEqual(await started.json(), { demo: false, channels: ["whatsapp"] });
+        const cookie = started.headers.get("set-cookie")!.split(";")[0];
+        const whatsappDraft = {
+          ...draft,
+          firstName: "Visitante de teste",
+          contact: "+55 (11) 00000-0000",
+          channel: "whatsapp",
+          summary: "Gostaria de atendimento para revisar uma locação."
+        };
+        const preview = await intake(
+          visitorRequest("/api/intakes", 9, cookie, {
+            action: "preview",
+            draft: whatsappDraft
+          })
+        );
+        assert.equal(preview.status, 200);
+        assert.equal(
+          (await database.query("select * from public.chatbot_intakes")).rows.length,
+          countBefore
+        );
+        const confirmation = {
+          action: "confirm",
+          confirmation: { ...(await preview.json()), noticeVersion, confirmed: true }
+        };
+        let whatsappUrl = "";
+        for (let attempt = 0; attempt < 2; attempt++) {
+          const response = await intake(
+            visitorRequest("/api/intakes", 9, cookie, confirmation)
+          );
+          assert.equal(response.status, 200);
+          const result = await response.json();
+          whatsappUrl = result.whatsappUrl;
+          assert.match(result.message, /Abra o WhatsApp e envie/);
+        }
+        const rows = await database.query<{ id: string }>(
+          "select id from public.chatbot_intakes where summary=$1 and channel='whatsapp'",
+          [whatsappDraft.summary]
+        );
+        assert.equal(rows.rows.length, 1);
+        assert.equal(
+          (await database.query("select * from public.chatbot_intakes")).rows.length,
+          countBefore + 1
+        );
+        const url = new URL(whatsappUrl);
+        assert.equal(url.origin, "https://wa.me");
+        assert.equal(url.pathname, "/5511000000000");
+        assert.deepEqual([...url.searchParams.keys()], ["text"]);
+        assert.equal(
+          url.searchParams.get("text"),
+          "Olá, gostaria de continuar meu atendimento. Protocolo: " + rows.rows[0].id
+        );
+        for (const data of [
+          whatsappDraft.firstName,
+          whatsappDraft.contact,
+          whatsappDraft.summary
+        ]) {
+          assert.equal(url.searchParams.get("text")!.includes(data), false);
+        }
+        assert.deepEqual(
+          (
+            await database.query(
+              "select channel,status from public.chatbot_delivery_attempts where intake_id=$1",
+              [rows.rows[0].id]
+            )
+          ).rows,
+          [{ channel: "whatsapp", status: "link_gerado" }]
+        );
+        const emailAttempt = await intake(
+          visitorRequest("/api/intakes", 9, cookie, { action: "preview", draft })
+        );
+        assert.equal(emailAttempt.status, 400);
+        assert.equal((await worker(jobRequest())).status, 404);
+        assert.equal(outbound, sentBefore);
+      } finally {
+        for (const key of keys) {
+          if (before[key] === undefined) delete process.env[key];
+          else process.env[key] = before[key];
+        }
+      }
+    }
+  );
 });
