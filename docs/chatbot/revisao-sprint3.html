@@ -1,0 +1,2328 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Sprint 3 — revisão do Assistente virtual</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font:
+          16px/1.65 system-ui,
+          sans-serif;
+        color: #16313e;
+        background: #f7f4ed;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        max-width: 1000px;
+        margin: auto;
+        padding: 32px 20px 80px;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.3;
+      }
+      h1 {
+        font-family: Georgia, serif;
+        font-size: clamp(28px, 5vw, 42px);
+      }
+      h2 {
+        margin-top: 40px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+      a {
+        color: #16313e;
+        text-underline-offset: 3px;
+        overflow-wrap: anywhere;
+      }
+      p {
+        margin: 12px 0;
+      }
+      .notice {
+        padding: 18px 22px;
+        background: #fff;
+        border-left: 4px solid #b8985f;
+        border-radius: 8px;
+      }
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 24px 0;
+      }
+      nav a {
+        background: #fff;
+        padding: 8px 12px;
+        border: 1px solid #ded8cb;
+        border-radius: 6px;
+      }
+      article {
+        padding: 16px 24px;
+        margin: 16px 0;
+        background: #fff;
+        border: 1px solid #e2ddd2;
+        border-radius: 10px;
+        break-inside: avoid;
+      }
+      article small {
+        color: #62747c;
+      }
+      article .handoff {
+        padding-top: 12px;
+        border-top: 1px solid #eee7da;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+      }
+      td,
+      th {
+        text-align: left;
+        vertical-align: top;
+        padding: 12px;
+        border: 1px solid #ddd6c8;
+      }
+      li {
+        margin: 8px 0;
+      }
+      section {
+        scroll-margin-top: 20px;
+      }
+      @media (max-width: 500px) {
+        td,
+        th {
+          padding: 7px;
+          font-size: 13px;
+        }
+        article {
+          padding: 14px;
+        }
+      }
+      @media print {
+        nav {
+          display: none;
+        }
+        body {
+          background: white;
+        }
+        main {
+          padding: 0;
+        }
+        a {
+          color: #000;
+        }
+        article {
+          border-color: #aaa;
+        }
+        h2 {
+          break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>FLEMING &amp; BATISTA · ASSISTENTE VIRTUAL</p>
+      <h1>Sprint 3 · Conteúdo e privacidade</h1>
+      <div class="notice">
+        <strong>Versão para revisão do escritório · 19/11/2026</strong>
+        <p>
+          Este documento reúne as 95 respostas do catálogo nas sete áreas. A aprovação
+          jurídica do conteúdo e das decisões de privacidade ainda deve ser registrada
+          pelo responsável. A autorização de deploy da prévia não substitui essa
+          aprovação.
+        </p>
+        <p>
+          Conferência original das fontes em 2026-11-12. Validade técnica até 2026-12-12.
+          As datas não foram prorrogadas nesta sprint.
+        </p>
+      </div>
+      <nav aria-label="Seções">
+        <a href="#criterios">Critérios</a><a href="#privacidade">Dados e retenção</a
+        ><a href="#imobiliario">Direito Imobiliário (25)</a
+        ><a href="#civil">Direito Civil (12)</a
+        ><a href="#familia">Família e Sucessões (12)</a
+        ><a href="#consumidor">Direito do Consumidor (12)</a
+        ><a href="#trabalhista">Direito Trabalhista (12)</a
+        ><a href="#previdenciario">Direito Previdenciário (12)</a
+        ><a href="#cidadania">Cidadania Europeia (10)</a>
+      </nav>
+      <section id="criterios">
+        <h2>Critérios de resposta e encaminhamento</h2>
+        <ol>
+          <li>
+            Escolha de área abre uma pergunta sobre a dúvida, sem encaminhamento
+            obrigatório.
+          </li>
+          <li>
+            Definições, listas de documentos e procedimentos gerais são respondidos
+            primeiro, com fonte disponível. O cliente prepara os documentos fora do chat.
+          </li>
+          <li>
+            Análise de documento, cálculo, conclusão sobre direito individual ou escolha
+            de estratégia exigem avaliação da equipe. O assistente explica a parte geral
+            fundamentada antes de oferecer Atendimento humano.
+          </li>
+          <li>
+            Ausência, vencimento ou insuficiência de fonte implica encaminhamento sem
+            inventar resposta. Pedidos de situações fictícias não são atendidos.
+          </li>
+          <li>
+            Prazo ou audiência iminente recebem orientação de atendimento prioritário. O
+            chat não calcula ou suspende prazos e não garante resposta a tempo.
+          </li>
+          <li>
+            Perigo físico imediato recebe orientação para buscar local seguro e serviços
+            oficiais de emergência. O chat não aciona socorro nem monitora emergências.
+          </li>
+        </ol>
+        <p>
+          As respostas abaixo são resumos disponíveis ao modelo. A redação exibida pode
+          variar. A referência e a condição de encaminhamento acompanham cada item para
+          conferência.
+        </p>
+      </section>
+      <section id="privacidade">
+        <h2>Dados e retenção para decisão do escritório</h2>
+        <p>
+          A política pública foi corrigida para descrever a pergunta e até quatro trocas
+          enviadas à OpenAI, os limites da filtragem, a sessão, os pedidos confirmados,
+          provedores e o canal de direitos do titular. Não se afirma anonimização completa
+          ou retenção zero. A política continua informando que não há exclusão automática
+          de pedidos.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Conjunto</th>
+              <th>Funcionamento atual</th>
+              <th>Proposta / decisão pendente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conversa</td>
+              <td>
+                Memória do componente no navegador. Descartada ao fechar o chat ou
+                recarregar. Até quatro trocas seguem em cada chamada. Sem tabela de
+                histórico.
+              </td>
+              <td>
+                Manter. Filtragem de identificadores não remove todos os nomes ou relatos
+                sensíveis.
+              </td>
+            </tr>
+            <tr>
+              <td>Sessão</td>
+              <td>
+                Cookie HttpOnly, SameSite Strict, HTTPS fora de desenvolvimento. 30
+                minutos de inatividade, máximo de duas horas.
+              </td>
+              <td>
+                Manter. Expirar sessão não apaga pedidos confirmados nem registros dos
+                provedores.
+              </td>
+            </tr>
+            <tr>
+              <td>Pedido sem contratação</td>
+              <td>
+                Nome, contato, área, resumo, canal e protocolo guardados após confirmação.
+                Sem rotina de exclusão.
+              </td>
+              <td>
+                Proposta solicitada pelo usuário: excluir 90 dias após o encerramento,
+                somente sem contratação e sem obrigação de conservação ou litígio. Ainda
+                não implementada.
+              </td>
+            </tr>
+            <tr>
+              <td>Autorização e auditoria</td>
+              <td>
+                Versão do aviso, resumo criptográfico e data. Auditoria de status e
+                atribuição. A exclusão do pedido não basta para eliminar todos os
+                vínculos.
+              </td>
+              <td>
+                Definir fundamento e prazo próprio para prova de autorização e auditoria,
+                inclusive se a guarda acompanhará os 90 dias ou houver necessidade
+                distinta.
+              </td>
+            </tr>
+            <tr>
+              <td>Pedido contratado</td>
+              <td>
+                O sistema ainda não possui marcador confiável de contratação nem data
+                imutável de encerramento.
+              </td>
+              <td>
+                Separar dos pedidos sem contratação e adotar a política de arquivos
+                profissionais aprovada pelo escritório.
+              </td>
+            </tr>
+            <tr>
+              <td>Provedores e backups</td>
+              <td>
+                OpenAI recebe requisições com store=false. Hospedagem Vercel e dados
+                Supabase. Resend somente quando e-mail habilitado.
+              </td>
+              <td>
+                Confirmar contratos, transferências internacionais, configurações reais de
+                retenção e ciclo de backups antes de produção. Exclusão no banco ativo não
+                significa eliminação instantânea nos provedores.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Implementação futura da proposta de 90 dias</h3>
+        <p>
+          Antes de ativar a limpeza, registrar encerramento sem depender de updated_at,
+          situação de contratação e bloqueio de conservação. Prever reabertura do pedido,
+          fila de mensagens e eventos pendentes, registros de autorização e auditoria,
+          relatório sem dados pessoais e reaplicação das exclusões após restauração de
+          backup. Começar com simulação de candidatos e testes em banco descartável.
+          Nenhum dado foi apagado nesta sprint.
+        </p>
+        <h3>Pontos que precisam do responsável</h3>
+        <ul>
+          <li>
+            Nome e data da aprovação jurídica das 95 respostas e dos critérios acima.
+          </li>
+          <li>
+            Fundamentos do tratamento, responsáveis por pedidos de titulares, conservação
+            excepcional, prazos de auditoria e backups e condições dos provedores.
+          </li>
+          <li>
+            Revisão das condições de família e sucessões na Resolução CNJ 35 e suas
+            alterações, incluindo 571/2024 e 695/2026. Os resumos não condicionam o
+            inventário ao recolhimento prévio de ITCMD.
+          </li>
+          <li>
+            Revisão frequente de cidadania italiana e portuguesa, sem prometer
+            elegibilidade, prazo ou lista documental definitiva.
+          </li>
+        </ul>
+        <p>
+          Referências para a revisão de privacidade:
+          <a
+            href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+            >LGPD, especialmente arts. 6, 7, 9, 15, 16, 18 e 33</a
+          >,
+          <a href="https://developers.openai.com/api/docs/guides/your-data"
+            >dados na API OpenAI</a
+          >
+          e
+          <a href="https://supabase.com/docs/guides/platform/backups">backups Supabase</a
+          >. Os 90 dias são uma proposta operacional, não um prazo geral imposto pela
+          LGPD.
+        </p>
+      </section>
+      <section id="imobiliario">
+        <h2>Direito Imobiliário · 25 respostas</h2>
+        <article>
+          <small>FAQ #12 · Aprovação jurídica pendente</small>
+          <h3>Quais documentos o inquilino precisa para alugar um imóvel?</h3>
+          <p>
+            Os documentos normalmente pedidos ao inquilino são identidade, CPF e
+            comprovante de renda. Confirme a lista com o locador ou a imobiliária, pois
+            ela pode variar conforme o cadastro e a garantia escolhida.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — documentos para locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver uma exigência contestada ou pedido
+            de análise dos documentos.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #13 · Aprovação jurídica pendente</small>
+          <h3>Quais documentos costumam ser pedidos ao fiador?</h3>
+          <p>
+            A lista usual do Procon-SP inclui identidade e CPF do fiador, escritura do
+            imóvel apresentado em garantia e IPTU. Confirme com o responsável pela locação
+            os documentos e os critérios de cadastro aplicáveis.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — documentação do fiador</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> O visitante quiser confirmar se um fiador
+            específico ou seu imóvel pode ser aceito.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #14 · Aprovação jurídica pendente</small>
+          <h3>Como comprovar renda para alugar sendo autônomo ou sem holerite?</h3>
+          <p>
+            A imobiliária ou o locador normalmente pede comprovação de renda. Se você
+            trabalha por conta própria ou não tem holerite, pergunte quais comprovantes
+            alternativos o responsável pelo cadastro aceita antes de reunir os documentos.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — comprovação de renda na locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver uma recusa que a pessoa queira
+            contestar ou documentos que precisem de análise.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #1 · Aprovação jurídica pendente</small>
+          <h3>O que é um contrato de aluguel e o que conferir antes de assinar?</h3>
+          <p>
+            Na locação, o inquilino usa o imóvel mediante pagamento de aluguel. Antes de
+            assinar, confira a identificação das partes e do imóvel, prazo, valor e
+            pagamento do aluguel, reajuste, encargos, garantia e termo de vistoria.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — contrato de locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A dúvida exigir interpretar uma cláusula ou
+            conferir um contrato.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #15 · Aprovação jurídica pendente</small>
+          <h3>Para que serve a vistoria de entrada?</h3>
+          <p>
+            A vistoria de entrada registra o estado em que o inquilino recebe o imóvel.
+            Confira se o termo descreve as condições do imóvel e se os defeitos que você
+            observou estão registrados.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — termo de vistoria na locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver divergência entre o termo e o estado
+            do imóvel que precise ser avaliada.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #16 · Aprovação jurídica pendente</small>
+          <h3>Para que serve a vistoria de saída?</h3>
+          <p>
+            Na devolução do imóvel, o estado registrado na vistoria de saída pode ser
+            comparado com o termo de entrada. Essa comparação ajuda a identificar
+            diferenças entre o estado em que o imóvel foi recebido e devolvido.
+          </p>
+          <p>
+            <a href="https://www.procon.sp.gov.br/sac/" target="_blank" rel="noreferrer"
+              >Procon-SP — devolução do imóvel e vistoria</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver divergência sobre o laudo final, a
+            entrega das chaves ou uma cobrança de reparo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #17 · Aprovação jurídica pendente</small>
+          <h3>Quais são os tipos de garantia no aluguel?</h3>
+          <p>
+            A lei prevê caução, fiança, seguro de fiança locatícia e cessão fiduciária de
+            quotas de fundo de investimento como modalidades de garantia de aluguel.
+          </p>
+          <p>
+            <a
+              href="https://crecidf.gov.br/perguntas-e-respostas/"
+              target="_blank"
+              rel="noreferrer"
+              >CRECI-DF — modalidades de garantia locatícia</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser escolher uma modalidade
+            para seu contrato ou questionar uma exigência específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #18 · Aprovação jurídica pendente</small>
+          <h3>O contrato de aluguel pode exigir mais de uma garantia?</h3>
+          <p>
+            Um mesmo contrato de locação pode ter somente uma modalidade de garantia. A
+            regra veda exigir duas modalidades, como caução e fiança, para o mesmo
+            contrato.
+          </p>
+          <p>
+            <a
+              href="https://crecidf.gov.br/perguntas-e-respostas/"
+              target="_blank"
+              rel="noreferrer"
+              >CRECI-DF — garantia única na locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário examinar uma cobrança ou
+            verificar se uma cláusula prevê garantias cumulativas.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #19 · Aprovação jurídica pendente</small>
+          <h3>Qual é o limite da caução em dinheiro e onde ela fica depositada?</h3>
+          <p>
+            A caução em dinheiro é limitada ao equivalente a três meses de aluguel. O
+            depósito é feito em poupança, com os rendimentos destinados ao inquilino
+            quando o valor for levantado.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 38 — caução em dinheiro</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser calcular o saldo, discutir
+            descontos ou cobrar a devolução.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #20 · Aprovação jurídica pendente</small>
+          <h3>O que é seguro-fiança e o que ele cobre?</h3>
+          <p>
+            O seguro-fiança protege o locador contra o inadimplemento do inquilino. A
+            cobertura básica é o não pagamento do aluguel. Outras coberturas dependem da
+            apólice contratada.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/susep/pt-br/copy_of_planos-e-produtos/seguros/seguro-fianca-locaticia"
+              target="_blank"
+              rel="noreferrer"
+              >SUSEP — seguro de fiança locatícia</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se uma apólice
+            específica cobre uma despesa ou discutir uma negativa.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #21 · Aprovação jurídica pendente</small>
+          <h3>O que faz o fiador e qual é a sua responsabilidade?</h3>
+          <p>
+            O fiador assume por escrito uma garantia perante o credor para o caso de o
+            devedor não cumprir a obrigação. Na locação, o alcance do compromisso deve ser
+            conferido no instrumento de fiança.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, arts. 818 e 819 — fiança</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar a extensão,
+            duração ou liberação de uma fiança específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #22 · Aprovação jurídica pendente</small>
+          <h3>Quem paga as taxas de administração e intermediação da imobiliária?</h3>
+          <p>
+            As taxas de administração imobiliária e de intermediação da locação são de
+            responsabilidade do locador. A regra também abrange despesas de verificação da
+            idoneidade do candidato e do fiador.
+          </p>
+          <p>
+            <a
+              href="https://crecidf.gov.br/perguntas-e-respostas/"
+              target="_blank"
+              rel="noreferrer"
+              >CRECI-DF — taxas de administração e intermediação na locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser identificar a natureza de
+            uma cobrança ou discutir seu ressarcimento.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #23 · Aprovação jurídica pendente</small>
+          <h3>De quem é a responsabilidade pelo IPTU no imóvel alugado?</h3>
+          <p>
+            Na relação entre locador e inquilino, o IPTU cabe ao locador pela regra geral.
+            O contrato pode atribuir expressamente esse encargo ao inquilino.
+          </p>
+          <p>
+            <a
+              href="https://crecidf.gov.br/perguntas-e-respostas/"
+              target="_blank"
+              rel="noreferrer"
+              >CRECI-DF — IPTU na locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A resposta depender de cláusula do contrato
+            ou de uma cobrança específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #24 · Aprovação jurídica pendente</small>
+          <h3>Quem paga as despesas ordinárias do condomínio no aluguel?</h3>
+          <p>
+            Na locação, o inquilino paga as despesas ordinárias do condomínio, ligadas ao
+            funcionamento e à manutenção de rotina, como a limpeza das áreas comuns.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 23 — despesas ordinárias de condomínio</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário classificar uma despesa do
+            boleto ou questionar sua cobrança.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #25 · Aprovação jurídica pendente</small>
+          <h3>Quem paga despesas extraordinárias e obras do condomínio no aluguel?</h3>
+          <p>
+            O locador paga as despesas extraordinárias do condomínio, ligadas a gastos que
+            vão além da manutenção de rotina, como reformas estruturais.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 22 — despesas extraordinárias de condomínio</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser classificar uma obra
+            específica ou contestar um rateio.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #26 · Aprovação jurídica pendente</small>
+          <h3>Quem responde por defeitos que já existiam quando começou a locação?</h3>
+          <p>
+            Cabe ao locador responder por defeitos anteriores à locação. O termo de
+            vistoria ajuda a registrar as condições do imóvel no início.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 22 — defeitos anteriores à locação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso verificar quando o problema
+            surgiu, de quem é a responsabilidade ou quem deve pagar o reparo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #27 · Aprovação jurídica pendente</small>
+          <h3>Como o desgaste normal é tratado ao devolver o imóvel?</h3>
+          <p>
+            O inquilino deve devolver o imóvel nas condições em que o recebeu,
+            considerando a deterioração decorrente do uso normal.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 23 — estado do imóvel na devolução</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se uma avaria,
+            pintura ou cobrança específica se enquadra como desgaste normal.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #28 · Aprovação jurídica pendente</small>
+          <h3>O locador deve dar um recibo detalhado do aluguel?</h3>
+          <p>
+            O locador deve fornecer recibo que discrimine as importâncias pagas pelo
+            inquilino. Uma quitação genérica não atende à regra.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 22 — recibo discriminado</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver negativa de recibo ou discussão
+            sobre quais valores foram quitados.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #29 · Aprovação jurídica pendente</small>
+          <h3>Com que frequência o aluguel pode ter reajuste por índice?</h3>
+          <p>
+            O reajuste contratual por índice de preços tem periodicidade mínima de um ano.
+            Para verificar o reajuste previsto, confira a cláusula de índice e a data-base
+            do contrato.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2001/lei-10192-14-fevereiro-2001-365669-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei 10.192/2001, art. 2º — periodicidade do reajuste</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser conferir um aumento
+            aplicado, calcular o novo valor ou interpretar a cláusula.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #30 · Aprovação jurídica pendente</small>
+          <h3>Como funciona a multa por devolver o imóvel antes de acabar o contrato?</h3>
+          <p>
+            Na devolução antecipada pelo inquilino durante prazo determinado, a multa
+            contratual, quando aplicável, é proporcional ao período restante. A lei prevê
+            exceções.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 4º — devolução antecipada</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso calcular o valor, avaliar uma
+            exceção ou conferir a cláusula de um contrato.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #31 · Aprovação jurídica pendente</small>
+          <h3>Qual é o aviso para sair de uma locação por prazo indeterminado?</h3>
+          <p>
+            Na locação por prazo indeterminado, o inquilino deve avisar o locador por
+            escrito com pelo menos 30 dias de antecedência para encerrar o contrato.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, art. 6º — aviso para devolução</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver dúvida sobre o prazo do contrato, a
+            validade do aviso ou uma cobrança por sua falta.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #32 · Aprovação jurídica pendente</small>
+          <h3>O inquilino tem preferência para comprar o imóvel alugado?</h3>
+          <p>
+            Na venda, o inquilino tem preferência em igualdade de condições com terceiros.
+            Deve receber a comunicação do negócio e tem 30 dias para aceitar integralmente
+            a proposta.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei do Inquilinato, arts. 27 e 28 — preferência do inquilino</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> O imóvel já tiver sido negociado ou for
+            preciso examinar a comunicação, o prazo ou uma exceção.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #2 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre escritura e registro na compra de imóvel?</h3>
+          <p>
+            A escritura pública formaliza a compra e venda perante o tabelionato de notas.
+            O registro do título na matrícula, no cartório de registro de imóveis, é a
+            etapa que transfere a propriedade.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/informacoes/perguntas-mais-frequentes/extrajudicial/escrituras"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — escrituras públicas</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar quem é o
+            proprietário ou verificar os documentos de uma compra específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #33 · Aprovação jurídica pendente</small>
+          <h3>O que é a matrícula do imóvel e onde pedir sua certidão?</h3>
+          <p>
+            A matrícula individualiza o imóvel e reúne registros e averbações sobre ele. A
+            certidão pode ser solicitada ao cartório de registro de imóveis responsável
+            pela matrícula.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/informacoes/perguntas-mais-frequentes/extrajudicial/registro-de-imoveis"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — registro de imóveis e certidões</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso interpretar o conteúdo da
+            certidão, confirmar a titularidade ou avaliar restrições.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #3 · Aprovação jurídica pendente</small>
+          <h3>O que é usucapião?</h3>
+          <p>
+            Usucapião é uma forma de adquirir a propriedade pela posse exercida durante
+            determinado período, desde que sejam atendidos os requisitos legais. Há
+            modalidades com requisitos próprios.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/usucapiao"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — o que é usucapião</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se já tem direito ou
+            qual modalidade, prazo ou procedimento se aplica.
+          </p>
+        </article>
+      </section>
+      <section id="civil">
+        <h2>Direito Civil · 12 respostas</h2>
+        <article>
+          <small>FAQ #4 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre dano material e dano moral?</h3>
+          <p>
+            Dano material é prejuízo patrimonial. Dano moral envolve lesão a direitos da
+            personalidade, como honra ou imagem. A existência e o valor de uma indenização
+            dependem das circunstâncias e da prova.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/dano-material-dano-moral-e-dano-estetico"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — danos materiais e morais</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se tem direito a
+            indenização ou quanto poderia receber.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #34 · Aprovação jurídica pendente</small>
+          <h3>O que é nexo causal na responsabilidade civil?</h3>
+          <p>
+            Nexo causal é a ligação entre o fato atribuído ao responsável e o dano cuja
+            reparação se pede.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, arts. 186 e 927 — ato ilícito e reparação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso examinar as provas ou apontar
+            quem causou um dano concreto.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #35 · Aprovação jurídica pendente</small>
+          <h3>Um contrato verbal pode ser válido?</h3>
+          <p>
+            Um acordo verbal pode ser válido quando a lei não exige forma específica. O
+            registro por escrito ajuda a demonstrar o que foi combinado.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 107 — forma dos negócios jurídicos</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário confirmar a validade ou a
+            prova de um acordo específico.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #36 · Aprovação jurídica pendente</small>
+          <h3>O que é uma cláusula penal em um contrato?</h3>
+          <p>
+            Cláusula penal é uma penalidade previamente combinada para situações de
+            descumprimento ou atraso, conforme a redação do contrato.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/clausula-penal"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — cláusula penal</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se a multa pode ser
+            cobrada, reduzida ou calculada no seu contrato.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #37 · Aprovação jurídica pendente</small>
+          <h3>
+            Qual a diferença entre atraso e descumprimento definitivo de uma obrigação?
+          </h3>
+          <p>
+            Na mora, há atraso ou cumprimento fora das condições devidas. Se a prestação
+            se tornar inútil pelo atraso, o credor pode recusá-la e pedir perdas e danos.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, arts. 389, 394 e 395 — inadimplemento e mora</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A resposta depender de interpretar o
+            contrato ou avaliar as consequências de um atraso.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #38 · Aprovação jurídica pendente</small>
+          <h3>Para que serve o recibo de quitação de uma dívida?</h3>
+          <p>
+            O recibo documenta o pagamento. Uma quitação identifica a obrigação paga e
+            permite verificar a quem o pagamento foi feito.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, arts. 319 e 320 — quitação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver dúvida sobre o alcance do recibo, um
+            pagamento contestado ou saldo em aberto.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #39 · Aprovação jurídica pendente</small>
+          <h3>O que é uma notificação extrajudicial?</h3>
+          <p>
+            É uma comunicação formal feita fora de um processo judicial. O Registro de
+            Títulos e Documentos pode realizar a notificação e certificar sua entrega.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1970-1979/lei-6015-31-dezembro-1973-357511-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei de Registros Públicos, art. 160 — notificação por cartório</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário redigir uma notificação ou
+            definir seus efeitos e prazos em um caso.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #40 · Aprovação jurídica pendente</small>
+          <h3>O que é um acordo para encerrar uma disputa ou renegociar uma dívida?</h3>
+          <p>
+            A transação é um acordo em que as partes fazem concessões recíprocas para
+            prevenir ou encerrar um conflito.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 840 — transação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso analisar proposta, saldo,
+            juros, garantias ou elaborar um termo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #41 · Aprovação jurídica pendente</small>
+          <h3>O que significa prescrição em uma cobrança civil?</h3>
+          <p>
+            Prescrição é a perda da pretensão pelo decurso do prazo aplicável. O prazo
+            depende da natureza da pretensão e de circunstâncias que podem interferir na
+            sua contagem.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/prescricao-x-decadencia"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — prescrição e decadência</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar se uma dívida
+            específica prescreveu ou contar um prazo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #42 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre mediação e conciliação?</h3>
+          <p>
+            Na conciliação, o conciliador pode sugerir caminhos de acordo. Na mediação, o
+            mediador facilita o diálogo para que as próprias partes construam a solução. A
+            mediação é especialmente indicada quando já existe vínculo entre elas.
+          </p>
+          <p>
+            <a
+              href="https://www.cnj.jus.br/perguntas-frequentes-7/"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ — mediação e conciliação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser escolher a estratégia para
+            seu conflito ou avaliar os termos de um acordo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #43 · Aprovação jurídica pendente</small>
+          <h3>O que é um CEJUSC e para que serve?</h3>
+          <p>
+            O CEJUSC é um centro do Poder Judiciário que orienta e organiza sessões de
+            conciliação e mediação. Pode receber demandas antes de um processo ou em um
+            caso que já tramita, conforme o tribunal.
+          </p>
+          <p>
+            <a
+              href="https://www.cnj.jus.br/saiba-mais-conciliacao-mediacao/"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ — atendimento em conciliação e mediação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário decidir como iniciar um
+            pedido específico ou avaliar um acordo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #44 · Aprovação jurídica pendente</small>
+          <h3>O que significa boa-fé em um contrato civil?</h3>
+          <p>
+            As partes devem agir com lealdade e boa-fé ao concluir e executar o contrato.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 422 — boa-fé contratual</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser avaliar se uma conduta
+            concreta violou o dever de boa-fé.
+          </p>
+        </article>
+      </section>
+      <section id="familia">
+        <h2>Família e Sucessões · 12 respostas</h2>
+        <article>
+          <small>FAQ #5 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre inventário e partilha?</h3>
+          <p>
+            O inventário apura os bens e as obrigações deixados pela pessoa falecida. A
+            partilha define como a herança é distribuída entre os sucessores.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/consultas/jurisprudencia/jurisprudencia-em-temas/novo-codigo-de-processo-civil/inventario"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — inventário e partilha</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar herdeiros,
+            percentuais, tributos ou prazos.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #6 · Aprovação jurídica pendente</small>
+          <h3>O que é regime de bens e como funciona a comunhão parcial?</h3>
+          <p>
+            O regime de bens define como o patrimônio do casal é tratado. Na comunhão
+            parcial, em geral entram na comunhão os bens adquiridos onerosamente durante o
+            casamento, com as exceções legais.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/regime-de-bens-entre-conjuges"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — regimes de bens entre cônjuges</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso saber se um bem específico
+            integra a partilha.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #45 · Aprovação jurídica pendente</small>
+          <h3>O que caracteriza uma união estável?</h3>
+          <p>
+            União estável é uma convivência pública, contínua e duradoura com objetivo de
+            constituir família. A análise de um vínculo concreto depende dos fatos e dos
+            registros disponíveis.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/institucional/imprensa/campanhas-e-produtos/direito-facil/edicao-semanal/uniao-estavel"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — união estável</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar se sua relação é
+            união estável ou discutir as datas do vínculo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #46 · Aprovação jurídica pendente</small>
+          <h3>Como funciona o divórcio consensual em cartório?</h3>
+          <p>
+            O divórcio consensual pode ser feito por escritura pública, com assistência de
+            advogado ou defensor público. Se houver filhos menores ou incapazes, é preciso
+            comprovar solução judicial prévia das questões de guarda, convivência e
+            alimentos.
+          </p>
+          <p>
+            <a
+              href="https://atos.cnj.jus.br/atos/detalhar/179"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ, Resolução 35 — divórcio consensual</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário verificar se o casal cumpre
+            as condições da via extrajudicial.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #47 · Aprovação jurídica pendente</small>
+          <h3>É possível fazer inventário em cartório?</h3>
+          <p>
+            O inventário consensual pode ser feito por escritura pública, com assistência
+            de advogado ou defensor. A resolução prevê condições específicas para casos
+            com testamento ou interessado menor ou incapaz.
+          </p>
+          <p>
+            <a
+              href="https://atos.cnj.jus.br/atos/detalhar/179"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ, Resolução 35 — inventário extrajudicial</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser escolher a via do próprio
+            inventário ou houver divergência entre interessados.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #48 · Aprovação jurídica pendente</small>
+          <h3>Quais documentos separar para um inventário em cartório?</h3>
+          <p>
+            Em geral, reúna a certidão de óbito, documentos de identidade das partes,
+            certidões que comprovem parentesco e estado civil e documentos de titularidade
+            dos bens. Confirme a lista completa com o tabelionato e com quem vai
+            acompanhar o inventário.
+          </p>
+          <p>
+            <a
+              href="https://atos.cnj.jus.br/atos/detalhar/179"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ, Resolução 35 — documentos do inventário</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser enviar documentos, conferir
+            sua validade ou obter uma lista fechada para o caso.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #49 · Aprovação jurídica pendente</small>
+          <h3>O que é um testamento e ele pode ser revogado?</h3>
+          <p>
+            O testamento permite dispor para depois da morte, respeitados os limites
+            legais. Em geral pode ser alterado ou revogado, observadas as formalidades
+            aplicáveis.
+          </p>
+          <p>
+            <a
+              href="https://www.tjdft.jus.br/informacoes/perguntas-mais-frequentes/extrajudicial/testamento-e-revogacao"
+              target="_blank"
+              rel="noreferrer"
+              >TJDFT — testamento e revogação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A dúvida envolver redigir, interpretar ou
+            impugnar um testamento.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #50 · Aprovação jurídica pendente</small>
+          <h3>O que é guarda compartilhada?</h3>
+          <p>
+            Na guarda compartilhada, ambos os responsáveis exercem direitos e deveres
+            sobre a criação dos filhos. A divisão do convívio considera as condições do
+            caso e os interesses dos filhos.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 1.583 — guarda compartilhada</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário definir residência, horários
+            ou avaliar riscos e restrições.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #51 · Aprovação jurídica pendente</small>
+          <h3>Para que serve a regulamentação da convivência familiar?</h3>
+          <p>
+            Organiza o convívio dos filhos com os responsáveis e pode estabelecer períodos
+            de convivência por acordo ou decisão judicial.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, arts. 1.583 e 1.589 — convivência familiar</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser fixar ou alterar dias,
+            horários ou condições da convivência.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #52 · Aprovação jurídica pendente</small>
+          <h3>O que é pensão alimentícia e o que influencia o valor?</h3>
+          <p>
+            Alimentos são prestações de sustento. Sua fixação considera as necessidades de
+            quem recebe e os recursos de quem paga.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 1.694 — fixação de alimentos</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser calcular um valor ou
+            confirmar quem deve pagar.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #53 · Aprovação jurídica pendente</small>
+          <h3>A pensão alimentícia pode ser revista?</h3>
+          <p>
+            Uma mudança na situação financeira de quem paga ou de quem recebe pode
+            fundamentar um pedido de revisão da pensão.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/2002/lei-10406-10-janeiro-2002-432893-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Código Civil, art. 1.699 — revisão de alimentos</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se pode reduzir,
+            aumentar ou parar de pagar no seu caso.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #54 · Aprovação jurídica pendente</small>
+          <h3>Como se formaliza a dissolução consensual de união estável?</h3>
+          <p>
+            A extinção consensual da união estável pode ser formalizada por escritura
+            pública com assistência jurídica e observância das condições aplicáveis. A
+            escritura pode tratar da partilha, quando houver bens a dividir.
+          </p>
+          <p>
+            <a
+              href="https://atos.cnj.jus.br/atos/detalhar/179"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ, Resolução 35 — extinção consensual de união estável</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber como formalizar sua
+            dissolução, especialmente quando houver bens, filhos ou desacordo.
+          </p>
+        </article>
+      </section>
+      <section id="consumidor">
+        <h2>Direito do Consumidor · 12 respostas</h2>
+        <article>
+          <small>FAQ #7 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre garantia legal e garantia contratual?</h3>
+          <p>
+            A garantia legal decorre da lei e independe de certificado. A garantia
+            contratual é oferecida pelo fornecedor por escrito e complementa a garantia
+            legal.
+          </p>
+          <p>
+            <a
+              href="https://www.procon.sp.gov.br/wp-content/uploads/2022/01/NocoesBasicassobreDireitosdoConsumidor2022.pdf"
+              target="_blank"
+              rel="noreferrer"
+              >Procon-SP — noções básicas sobre direitos do consumidor</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar a cobertura ou a
+            vigência de uma garantia específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #55 · Aprovação jurídica pendente</small>
+          <h3>Qual é o prazo para reclamar de um defeito aparente?</h3>
+          <p>
+            Para vícios aparentes, o prazo de reclamação é de 30 dias para produtos ou
+            serviços não duráveis e de 90 dias para os duráveis. Conta-se da entrega do
+            produto ou do fim da execução do serviço.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 26 — prazo para reclamar do vício aparente</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso classificar o produto,
+            verificar as datas ou calcular o prazo da reclamação.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #56 · Aprovação jurídica pendente</small>
+          <h3>O que é um vício oculto e quando começa o prazo para reclamar?</h3>
+          <p>
+            Vício oculto é um problema que não era aparente. O prazo para reclamar começa
+            quando o defeito se torna perceptível.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 26 — vício oculto</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser determinar a causa do
+            defeito, a data em que apareceu ou se sua reclamação ainda cabe.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #57 · Aprovação jurídica pendente</small>
+          <h3>Quanto tempo o fornecedor tem para reparar um produto com defeito?</h3>
+          <p>
+            Em geral, o fornecedor tem até 30 dias para sanar o vício do produto. A lei
+            prevê situações que permitem ao consumidor escolher a solução imediatamente,
+            como no caso de produto essencial.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 18 — prazo de reparo do produto</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário verificar prazo, exceções ou
+            se um produto específico é essencial.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #58 · Aprovação jurídica pendente</small>
+          <h3>Quais opções existem quando o produto não é reparado no prazo?</h3>
+          <p>
+            Se o vício do produto não for sanado no prazo aplicável, o consumidor pode
+            optar pela substituição, pela restituição do valor pago ou pelo abatimento
+            proporcional do preço.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 18 — opções após o prazo de reparo</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser exigir uma dessas soluções
+            em um caso específico ou houver recusa do fornecedor.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #59 · Aprovação jurídica pendente</small>
+          <h3>Como funciona o direito de arrependimento em uma compra on-line?</h3>
+          <p>
+            Em compras fora do estabelecimento, como pela internet ou por telefone, a
+            regra geral permite desistir em até sete dias a partir da assinatura ou do
+            recebimento, conforme a contratação. A devolução abrange os valores pagos.
+          </p>
+          <p>
+            <a
+              href="https://procon.rs.gov.br/direito-de-arrependimento"
+              target="_blank"
+              rel="noreferrer"
+              >Procon-RS — direito de arrependimento</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário contar o prazo, avaliar a
+            aplicação da regra ou contestar uma negativa.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #60 · Aprovação jurídica pendente</small>
+          <h3>
+            A loja física precisa trocar produto sem defeito por tamanho, cor ou gosto?
+          </h3>
+          <p>
+            Em compra presencial, a troca por tamanho, cor ou gosto depende da política ou
+            do compromisso assumido pela loja. Confira as condições informadas na compra.
+          </p>
+          <p>
+            <a
+              href="https://www.procon.sp.gov.br/trocas-de-presentes-2/"
+              target="_blank"
+              rel="noreferrer"
+              >Procon-SP — troca em loja física</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser contestar descumprimento de
+            uma promessa de troca.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #61 · Aprovação jurídica pendente</small>
+          <h3>Quando a cobrança indevida pode gerar devolução em dobro?</h3>
+          <p>
+            O CDC prevê devolução em dobro do valor que foi pago a mais, com correção e
+            juros, salvo engano justificável. Receber apenas a cobrança sem pagar o valor
+            não é o mesmo que pagar indevidamente.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 42 — repetição do indébito</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar se tem direito à
+            devolução, calcular o valor ou discutir a justificativa da cobrança.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #62 · Aprovação jurídica pendente</small>
+          <h3>O que a lei prevê quando um serviço contratado é prestado com vício?</h3>
+          <p>
+            Quando o serviço tem vício de qualidade, o consumidor pode optar por
+            reexecução sem custo, quando couber, devolução do valor pago ou abatimento
+            proporcional.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1990/lei-8078-11-setembro-1990-365086-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >CDC, art. 20 — vício do serviço</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso verificar se houve vício ou
+            qual medida cabe diante do contrato e da prova.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #63 · Aprovação jurídica pendente</small>
+          <h3>Quais comprovantes guardar para reclamar de uma compra ou serviço?</h3>
+          <p>
+            Guarde a nota fiscal ou o comprovante de pagamento, o contrato quando houver e
+            os protocolos de atendimento. Eles ajudam a demonstrar a compra e o que já foi
+            tratado com o fornecedor.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/mj/pt-br/assuntos/noticias/consumidor-gov-br-saiba-como-registrar-uma-reclamacao-pela-plataforma"
+              target="_blank"
+              rel="noreferrer"
+              >Ministério da Justiça — como registrar uma reclamação</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso analisar o conteúdo ou a
+            suficiência da prova em uma reclamação concreta.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #64 · Aprovação jurídica pendente</small>
+          <h3>Como registrar uma reclamação no Consumidor.gov.br?</h3>
+          <p>
+            A plataforma permite reclamar diretamente com empresas participantes. Confira
+            se a empresa está cadastrada, registre a demanda pelo canal oficial e
+            acompanhe a resposta para depois avaliar o atendimento.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/servicos/reclamar-contra-servico-ou-produto-de-empresas-privadas"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — serviço Consumidor.gov.br</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A dúvida exigir estratégia jurídica ou
+            análise de uma reclamação sem solução.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #65 · Aprovação jurídica pendente</small>
+          <h3>Como procurar o Procon para uma reclamação de consumo?</h3>
+          <p>
+            A Carta de Serviços do Procon-SP apresenta os canais de orientação e de
+            registro de reclamações. Confira o canal que atende a sua região e tenha à mão
+            os comprovantes da relação de consumo.
+          </p>
+          <p>
+            <a
+              href="https://www.procon.sp.gov.br/carta-de-servicos/"
+              target="_blank"
+              rel="noreferrer"
+              >Procon-SP — carta de serviços</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser avaliar medidas jurídicas,
+            danos ou o resultado possível de sua reclamação.
+          </p>
+        </article>
+      </section>
+      <section id="trabalhista">
+        <h2>Direito Trabalhista · 12 respostas</h2>
+        <article>
+          <small>FAQ #8 · Aprovação jurídica pendente</small>
+          <h3>O que é FGTS e onde conferir os depósitos?</h3>
+          <p>
+            O Fundo de Garantia do Tempo de Serviço é formado por depósitos em conta
+            vinculada ao trabalhador. No aplicativo FGTS da Caixa, o titular pode
+            consultar os depósitos, o saldo e o extrato.
+          </p>
+          <p>
+            <a
+              href="https://www.fgts.gov.br/Paginas/trabalhador/app-fgts.aspx"
+              target="_blank"
+              rel="noreferrer"
+              >Caixa — aplicativo FGTS</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser conferir depósitos
+            ausentes, cálculo de multa ou direito a um saque.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #9 · Aprovação jurídica pendente</small>
+          <h3>O que são rescisão e verbas rescisórias?</h3>
+          <p>
+            Rescisão é o encerramento do contrato de trabalho. As verbas rescisórias são
+            os valores apurados nesse encerramento. O que pode ser devido depende do tipo
+            de desligamento e do vínculo.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/proteja/duvidas-frequentes"
+              target="_blank"
+              rel="noreferrer"
+              >Ministério do Trabalho — encerramento do contrato</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser conferir o que deve receber
+            ou calcular a sua rescisão.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #66 · Aprovação jurídica pendente</small>
+          <h3>O que é o TRCT e o que deve aparecer no documento de rescisão?</h3>
+          <p>
+            O Termo de Rescisão do Contrato de Trabalho formaliza a rescisão. O documento
+            de quitação deve identificar cada parcela paga e seu valor, e a quitação se
+            refere às parcelas discriminadas.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, art. 477 — discriminação das verbas rescisórias</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser enviar o TRCT, conferir
+            cálculos ou avaliar uma quitação específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #67 · Aprovação jurídica pendente</small>
+          <h3>Qual é o prazo geral de pagamento das verbas rescisórias?</h3>
+          <p>
+            Na regra geral da CLT, as verbas rescisórias devem ser pagas em até dez dias
+            contados do término do contrato de trabalho.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, art. 477 — prazo para pagamento na rescisão</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário identificar a data do
+            término, calcular o prazo ou discutir atraso e multa.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #68 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre pedir demissão e ser dispensado sem justa causa?</h3>
+          <p>
+            No pedido de demissão, a iniciativa é do trabalhador. Na dispensa sem justa
+            causa, a iniciativa é do empregador. A modalidade altera as verbas e o acesso
+            a FGTS e seguro-desemprego, sujeitos aos requisitos aplicáveis.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/proteja/duvidas-frequentes"
+              target="_blank"
+              rel="noreferrer"
+              >Ministério do Trabalho — modalidades de desligamento</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber valores, vantagens ou
+            consequências de um desligamento específico.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #69 · Aprovação jurídica pendente</small>
+          <h3>Como funciona a rescisão por acordo entre empregado e empregador?</h3>
+          <p>
+            O contrato pode terminar por acordo. Nessa modalidade, o aviso prévio
+            indenizado e a indenização do FGTS são pagos pela metade, as demais verbas são
+            integrais, o saque do FGTS é limitado a 80% e o acordo não dá acesso ao
+            seguro-desemprego.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, art. 484-A — extinção por acordo</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser avaliar, formalizar ou
+            calcular um acordo para o próprio vínculo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #70 · Aprovação jurídica pendente</small>
+          <h3>Como funcionam as férias anuais no regime da CLT?</h3>
+          <p>
+            O empregado adquire direito a férias após cada período de 12 meses de
+            contrato. O empregador deve concedê-las nos 12 meses seguintes. A duração pode
+            variar conforme as faltas que a lei manda considerar.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, arts. 129, 130 e 134 — férias anuais</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário apurar dias, datas,
+            pagamento ou efeitos de faltas ou afastamentos.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #71 · Aprovação jurídica pendente</small>
+          <h3>Como funcionam as parcelas do décimo terceiro salário?</h3>
+          <p>
+            Na regra geral, o décimo terceiro tem adiantamento até o fim de novembro. A
+            parcela final é devida até 20 de dezembro, descontado o adiantamento.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/trabalho-e-emprego/pt-br/servicos/empregador/fgtsdigital/perguntas-frequentes"
+              target="_blank"
+              rel="noreferrer"
+              >Ministério do Trabalho — adiantamento e parcela final do 13º</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser calcular o valor ou
+            conferir um caso com afastamento, rescisão ou parcelas variáveis.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #72 · Aprovação jurídica pendente</small>
+          <h3>O que é hora extra e qual é o adicional mínimo geral?</h3>
+          <p>
+            Hora extra é trabalho além da jornada normal. A remuneração da hora extra é,
+            em regra, pelo menos 50% superior à da hora normal. Regras de compensação ou
+            coletivas podem ser relevantes.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, art. 59 — horas extras</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser calcular horas e reflexos
+            ou verificar o regime de jornada aplicável.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #73 · Aprovação jurídica pendente</small>
+          <h3>Onde consultar os vínculos na Carteira de Trabalho Digital?</h3>
+          <p>
+            A Carteira de Trabalho Digital permite consultar os contratos de trabalho
+            registrados. Acesse o aplicativo oficial com a sua própria conta Gov.br.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/apps/ctps-digital"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — Carteira de Trabalho Digital</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver divergência no registro ou for
+            preciso avaliar a existência de vínculo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #74 · Aprovação jurídica pendente</small>
+          <h3>Onde pedir o seguro-desemprego?</h3>
+          <p>
+            O trabalhador pode solicitar o seguro-desemprego pelo portal oficial do
+            serviço ou pela Carteira de Trabalho Digital, se atender aos requisitos. Tenha
+            à mão o requerimento fornecido pelo empregador quando aplicável.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — solicitar o seguro-desemprego</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser verificar se tem direito,
+            prazo, quantidade de parcelas ou uma negativa.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #75 · Aprovação jurídica pendente</small>
+          <h3>Como funciona a homologação de um acordo trabalhista extrajudicial?</h3>
+          <p>
+            As partes podem pedir conjuntamente a homologação de um acordo extrajudicial
+            na Justiça do Trabalho. Cada parte deve ser representada por advogado
+            distinto.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/declei/1940-1949/decreto-lei-5452-1-maio-1943-415500-normaatualizada-pe.html"
+              target="_blank"
+              rel="noreferrer"
+              >CLT, art. 855-B — homologação de acordo extrajudicial</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A dúvida exigir revisar ou redigir o
+            acordo, avaliar renúncias ou prever o resultado da homologação.
+          </p>
+        </article>
+      </section>
+      <section id="previdenciario">
+        <h2>Direito Previdenciário · 12 respostas</h2>
+        <article>
+          <small>FAQ #10 · Aprovação jurídica pendente</small>
+          <h3>O que é o CNIS e onde consultar o extrato?</h3>
+          <p>
+            O Cadastro Nacional de Informações Sociais reúne vínculos, remunerações e
+            contribuições registrados. O titular pode obter o extrato pelo Meu INSS e
+            conferir as informações que constam no cadastro.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/servicos/emitir-extrato-de-contribuicao-cnis"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — emitir o extrato de contribuições CNIS</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser analisar períodos, corrigir
+            divergências ou confirmar tempo de contribuição.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #11 · Aprovação jurídica pendente</small>
+          <h3>O BPC é uma aposentadoria? É preciso ter contribuído ao INSS?</h3>
+          <p>
+            O BPC é um benefício assistencial para pessoas idosas ou com deficiência que
+            atendam aos critérios. Ele não é aposentadoria e dispensa contribuições
+            anteriores ao INSS.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/noticias/como-pedir-beneficio-de-prestacao-continuada-bpc"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — Benefício de Prestação Continuada</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar elegibilidade,
+            renda familiar, avaliação de deficiência ou acúmulo de benefícios.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #76 · Aprovação jurídica pendente</small>
+          <h3>Qual a diferença entre carência e tempo de contribuição?</h3>
+          <p>
+            Carência é a quantidade mínima de contribuições mensais exigidas para
+            determinado benefício. Tempo de contribuição mede os períodos computáveis. Um
+            período pode ter tratamento diferente nos dois critérios.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/noticias/inss-tempo-de-contribuicao-nao-garante-cumprimento-de-carencia"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — tempo de contribuição e carência</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser contar meses, períodos ou
+            verificar requisitos para seu benefício.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #77 · Aprovação jurídica pendente</small>
+          <h3>Onde simular aposentadoria e o que significa o resultado?</h3>
+          <p>
+            No Meu INSS, a opção Simular Aposentadoria usa os dados cadastrados para
+            estimar quanto falta para cumprir requisitos. O resultado é informativo. O
+            INSS analisa o direito ao receber o pedido.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/assuntos/sem-confusao-calculadora-do-inss-faz-simulacao-do-tempo-que-falta-para-aposentadoria"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — calculadora e simulação de aposentadoria</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser definir a melhor regra,
+            corrigir períodos ou confirmar se já pode se aposentar.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #78 · Aprovação jurídica pendente</small>
+          <h3>O que é a carta de concessão e onde emitir?</h3>
+          <p>
+            A carta de concessão informa a decisão de concessão e dados do benefício, como
+            o cálculo do valor e o local de pagamento. Pode ser emitida pelo Meu INSS.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/servicos/emitir-carta-de-concessao-de-beneficio"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — emitir carta de concessão de benefício</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser interpretar o cálculo ou
+            conferir o valor concedido.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #79 · Aprovação jurídica pendente</small>
+          <h3>Para que serve um pedido de revisão de benefício do INSS?</h3>
+          <p>
+            A revisão permite pedir que o INSS reexamine dados usados em um benefício já
+            concedido. Pode envolver um vínculo ou salário de contribuição que a pessoa
+            entende que não foi considerado. O serviço de revisão está no Meu INSS.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/saiba-mais/seu-beneficio/revisao"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — revisão de benefício</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário verificar prazo, documentos,
+            risco ou se uma revisão é cabível.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #80 · Aprovação jurídica pendente</small>
+          <h3>Onde consultar os pagamentos de um benefício do INSS?</h3>
+          <p>
+            No Meu INSS, o extrato de pagamento mostra o histórico de pagamentos do
+            benefício, com valores e dados do pagamento.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/pt-br/servicos/emitir-extrato-de-pagamento-de-beneficio"
+              target="_blank"
+              rel="noreferrer"
+              >Gov.br — extrato de pagamento de benefício</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser verificar um desconto,
+            diferença ou ausência de pagamento.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #81 · Aprovação jurídica pendente</small>
+          <h3>Onde fazer e acompanhar um pedido de benefício do INSS?</h3>
+          <p>
+            No Meu INSS, a opção Novo Pedido permite solicitar serviços e benefícios. Em
+            Consultar Pedidos, é possível acompanhar o protocolo e verificar a situação e
+            eventuais exigências.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/assuntos/noticias/conheca-os-5-servicos-mais-acessados-do-meu-inss"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — serviços digitais do Meu INSS</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A dúvida for sobre qual benefício pedir,
+            contestar uma decisão ou avaliar atraso.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #82 · Aprovação jurídica pendente</small>
+          <h3>O que significa cumprir exigência no Meu INSS?</h3>
+          <p>
+            Uma exigência é um pedido de informação ou documentação adicional. Abra o
+            requerimento em Consultar Pedidos no Meu INSS, leia a solicitação e use
+            Cumprir Exigência para responder pelo canal oficial.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/assuntos/noticias/201ccumprimento-de-exigencia201d-confira-se-voce-precisa-entregar-algum-documento-para-que-seu-pedido-seja-concluido"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — cumprimento de exigência</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser ajuda para interpretar a
+            exigência ou reunir a prova específica do seu pedido.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #83 · Aprovação jurídica pendente</small>
+          <h3>O que é auxílio por incapacidade temporária, antigo auxílio-doença?</h3>
+          <p>
+            É um benefício previdenciário para segurados que comprovem incapacidade
+            temporária para o trabalho ou atividade habitual, conforme a avaliação e os
+            requisitos do INSS.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/direitos-e-deveres/beneficios-por-incapacidade/auxilio-por-incapacidade-temporaria"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — auxílio por incapacidade temporária</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar direito, prazo,
+            documentação médica ou contestar uma decisão.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #84 · Aprovação jurídica pendente</small>
+          <h3>O que é pensão por morte do INSS?</h3>
+          <p>
+            É um benefício pago aos dependentes de segurado do INSS que faleceu,
+            observadas as regras do benefício. A duração pode variar conforme a categoria
+            do dependente e outras condições.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/direitos-e-deveres/pensoes/pensao-por-morte"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — pensão por morte</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser saber se é dependente,
+            quanto pode receber ou por quanto tempo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #85 · Aprovação jurídica pendente</small>
+          <h3>O que é salário-maternidade?</h3>
+          <p>
+            O salário-maternidade é um benefício previdenciário ligado ao afastamento por
+            nascimento, adoção ou guarda judicial para fins de adoção, entre as hipóteses
+            previstas. O canal de solicitação depende da categoria do segurado.
+          </p>
+          <p>
+            <a
+              href="https://www.gov.br/inss/pt-br/direitos-e-deveres/salario-maternidade/salario-maternidade"
+              target="_blank"
+              rel="noreferrer"
+              >INSS — salário-maternidade</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar requisitos,
+            duração, valor ou por qual canal deve pedir no próprio caso.
+          </p>
+        </article>
+      </section>
+      <section id="cidadania">
+        <h2>Cidadania Europeia · 10 respostas</h2>
+        <article>
+          <small>FAQ #86 · Aprovação jurídica pendente</small>
+          <h3>
+            Quais documentos básicos o portal português indica para filho de português
+            nascido no exterior?
+          </h3>
+          <p>
+            A lista oficial inclui certidão de nascimento de quem pede, informações ou
+            certidão do registro de nascimento do progenitor português e declaração para
+            atribuição da nacionalidade. Confira a lista completa e as exigências de
+            legalização no portal.
+          </p>
+          <p>
+            <a
+              href="https://justica.gov.pt/Como-obter-nacionalidade-portuguesa/Nasceu-no-estrangeiro-e-e-filho-de-um-portugues"
+              target="_blank"
+              rel="noreferrer"
+              >Justiça de Portugal — nacionalidade para filho de português</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar direito, validade
+            de documentos ou a lista final para seu processo.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #87 · Aprovação jurídica pendente</small>
+          <h3>
+            Quais certidões separar para um pedido de nacionalidade portuguesa como neto?
+          </h3>
+          <p>
+            A lista oficial inclui as certidões de nascimento de quem pede, do pai ou da
+            mãe da linha portuguesa e do avô ou da avó portuguesa. Consulte os demais
+            documentos e as condições de legalização no portal oficial.
+          </p>
+          <p>
+            <a
+              href="https://justica.gov.pt/Como-obter-nacionalidade-portuguesa/E-neto-de-um-portugues"
+              target="_blank"
+              rel="noreferrer"
+              >Justiça de Portugal — documentação de neto de português</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso confirmar direito, comprovar o
+            vínculo familiar ou avaliar documentos e exceções.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #88 · Aprovação jurídica pendente</small>
+          <h3>Como acompanhar um processo de nacionalidade portuguesa?</h3>
+          <p>
+            O portal da Justiça de Portugal oferece consulta do estado do pedido de
+            nacionalidade com o código de acesso do processo. Use o código somente na
+            página oficial de consulta.
+          </p>
+          <p>
+            <a
+              href="https://justica.gov.pt/Servicos/Consultar-estado-do-processo-de-nacionalidade"
+              target="_blank"
+              rel="noreferrer"
+              >Justiça de Portugal — consulta do processo de nacionalidade</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> Houver dúvida sobre uma notificação,
+            exigência, indeferimento ou medida para um processo específico.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #89 · Aprovação jurídica pendente</small>
+          <h3>Onde apresentar um pedido de nacionalidade portuguesa?</h3>
+          <p>
+            A apresentação on-line é feita por advogado ou solicitador habilitado. O guia
+            da Justiça de Portugal indica os canais aplicáveis a cada categoria de pedido,
+            incluindo balcões e opções de envio ou atendimento quando previstas.
+          </p>
+          <p>
+            <a
+              href="https://irn.justica.gov.pt/Servicos/Cidadao/Nacionalidade/Nacionalidade-online-perguntas-e-respostas"
+              target="_blank"
+              rel="noreferrer"
+              >IRN — serviço de nacionalidade on-line</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser definir o canal ou o
+            procedimento para seu pedido específico.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #90 · Aprovação jurídica pendente</small>
+          <h3>
+            Onde consultar o procedimento italiano por descendência para maiores nascidos
+            no exterior?
+          </h3>
+          <p>
+            O Consulado da Itália em São Paulo publica as categorias para maiores nascidos
+            no exterior e listas de documentos por categoria. A legislação vigente limita
+            a transmissão em determinadas situações. Consulte a categoria e o posto
+            consular competente antes de reunir a documentação.
+          </p>
+          <p>
+            <a
+              href="https://conssanpaolo.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/cittadinanza/cittadinanza-iure-sanguinis/"
+              target="_blank"
+              rel="noreferrer"
+              >Consulado da Itália em São Paulo — reconhecimento por descendência para
+              adultos</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser confirmar se uma
+            ascendência, data, cidadania anterior ou regra de transição dá direito ao
+            reconhecimento.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #91 · Aprovação jurídica pendente</small>
+          <h3>
+            Como agendar no Consulado da Itália em São Paulo para reconhecimento de adulto
+            por descendência?
+          </h3>
+          <p>
+            O Consulado informa que a apresentação do pedido de reconhecimento para
+            maiores por descendência requer agendamento pelo Prenot@mi. O site anuncia as
+            aberturas de vagas e orienta o comparecimento com os documentos da categoria.
+          </p>
+          <p>
+            <a
+              href="https://conssanpaolo.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/cittadinanza/cittadinanza-iure-sanguinis/"
+              target="_blank"
+              rel="noreferrer"
+              >Consulado da Itália em São Paulo — agendamento para maiores por
+              descendência</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser tratar de um agendamento ou
+            pedido específico, ou da categoria aplicável.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #92 · Aprovação jurídica pendente</small>
+          <h3>Onde consultar o procedimento de cidadania italiana para menores?</h3>
+          <p>
+            O Consulado tem uma seção própria para filhos menores, com instruções e
+            formulários conforme a modalidade. Consulte essa seção para verificar como
+            apresentar os documentos.
+          </p>
+          <p>
+            <a
+              href="https://conssanpaolo.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/cittadinanza/acquisto-citt-minori/"
+              target="_blank"
+              rel="noreferrer"
+              >Consulado da Itália em São Paulo — procedimentos para filhos menores</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser determinar a modalidade, o
+            prazo ou se um menor específico se enquadra.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #93 · Aprovação jurídica pendente</small>
+          <h3>Para que serve a Apostila da Haia em uma certidão?</h3>
+          <p>
+            A apostila certifica a origem de um documento público para apresentação em
+            outro país signatário da Convenção. No Brasil, ela é emitida por autoridades
+            autorizadas, como os cartórios habilitados pelo CNJ.
+          </p>
+          <p>
+            <a
+              href="https://www.cnj.jus.br/poder-judiciario/relacoes-internacionais/apostila-da-haia/perguntas-frequentes-5/"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ — Apostila da Haia</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> A pessoa quiser verificar se um documento
+            específico precisa de apostila ou se será aceito no exterior.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #94 · Aprovação jurídica pendente</small>
+          <h3>Apostilar um documento substitui a tradução?</h3>
+          <p>
+            A apostila certifica a origem do documento e a tradução torna seu conteúdo
+            acessível no idioma exigido. Confira com o órgão de destino se exige tradução
+            certificada e se a tradução também precisa ser apostilada.
+          </p>
+          <p>
+            <a
+              href="https://www.cnj.jus.br/poder-judiciario/relacoes-internacionais/apostila-da-haia/perguntas-frequentes-5/"
+              target="_blank"
+              rel="noreferrer"
+              >CNJ — apostilamento de documentos e traduções</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For necessário conferir o formato ou a
+            aceitação de uma tradução específica.
+          </p>
+        </article>
+        <article>
+          <small>FAQ #95 · Aprovação jurídica pendente</small>
+          <h3>Como funciona a retificação de certidão para cidadania?</h3>
+          <p>
+            Alguns erros que podem ser constatados de imediato podem ser corrigidos pelo
+            cartório. A via judicial pode ser necessária quando a correção depende de
+            apuração ou prova. Compare os registros e reúna as certidões que mostram a
+            divergência.
+          </p>
+          <p>
+            <a
+              href="https://www2.camara.leg.br/legin/fed/lei/1970-1979/lei-6015-31-dezembro-1973-357511-normaatualizada-pl.html"
+              target="_blank"
+              rel="noreferrer"
+              >Lei de Registros Públicos, arts. 109 e 110 — retificação de registros
+              civis</a
+            >
+          </p>
+          <p class="handoff">
+            <strong>Encaminhar quando</strong> For preciso avaliar a divergência concreta,
+            definir a via de correção ou saber se a autoridade estrangeira aceita a
+            certidão.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

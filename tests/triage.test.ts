@@ -81,6 +81,16 @@ test("Uma pergunta geral sobre prazo após o fim do contrato não é urgência",
   assert.equal(reply.legal_area, "trabalhista");
 });
 
+test("Mensagens urgentes esclarecem que o chat não monitora socorro nem suspende prazo", () => {
+  const danger = ruleTriage("Estou em perigo agora");
+  assert.equal(danger.suggested_action, "emergencia");
+  assert.match(danger.response, /não aciona socorro nem monitora emergências/);
+  const deadline = ruleTriage("A audiência é amanhã");
+  assert.equal(deadline.suggested_action, "atendimento");
+  assert.match(deadline.response, /não garante atendimento a tempo nem suspende o prazo/);
+  assert.match(deadline.response, /fora deste chat/);
+});
+
 test("Usa a pergunta anterior para situar uma continuação", () => {
   assert.equal(
     ruleTriage("E os documentos?", ["Minha pergunta é sobre aluguel"]).legal_area,

@@ -23,7 +23,7 @@ export type LegalArea = keyof typeof legalAreas;
 
 export const prioritySchema = z.enum(["regular", "elevada", "critica"]);
 export const channelSchema = z.enum(["whatsapp", "email"]);
-export const noticeVersion = "atendimento-v1";
+export const noticeVersion = "atendimento-v2";
 export const maxMessageLength = 2000;
 export const maxHistoryTurns = 4;
 export const idleSessionMs = 30 * 60 * 1000;

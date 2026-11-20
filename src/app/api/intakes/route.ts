@@ -37,7 +37,12 @@ export async function POST(request: NextRequest) {
   if (!channels.includes(draft.channel))
     return json({ error: "Escolha um canal disponível." }, 400);
   if (intakeContainsIdentifiers(draft))
-    return json({ error: "Remova documentos, números longos e e-mails do resumo." }, 400);
+    return json(
+      {
+        error: "Remova documentos, telefones, CEPs, números longos e e-mails do resumo."
+      },
+      400
+    );
 
   try {
     if (!(await consumeBudget("intake", request, secret))) {

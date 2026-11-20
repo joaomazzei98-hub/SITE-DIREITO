@@ -5,6 +5,7 @@ import {
   type ChatReply,
   type LegalArea
 } from "@/lib/chat/contracts";
+import { redactIdentifiers } from "@/lib/chat/privacy";
 
 const signals: Record<LegalArea, RegExp> = {
   cidadania:
@@ -43,11 +44,8 @@ const wantsStaff =
   /\b(?:advogad[oa]|atendimento|consulta|agendar|atendente|falar com|humano|humana)\b/i;
 const policyAttack =
   /(?:ignore|desconsidere|esque[cç]a).{0,45}(?:instru[cç][oõ]es|regras|prompt)|(?:prompt|mensagem) (?:de sistema|intern[oa])/i;
-const exactIdentifier =
-  /(?:\b[\w.+-]+@[\w.-]+\.[a-z]{2,}\b|\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b|\b\d{6,}\b|(?:\+55\s*)?(?:\(\d{2}\)|\d{2})\s*\d{4,5}[- ]?\d{4}\b)/gi;
-
 export function redactQuestion(question: string) {
-  return question.replace(exactIdentifier, "[dado removido]");
+  return redactIdentifiers(question);
 }
 
 export function attemptsPolicyOverride(question: string) {
@@ -116,7 +114,7 @@ export function ruleTriage(question: string, previous: string[] = []): ChatReply
       intent: "urgencia",
       suggested_action: "emergencia",
       response:
-        "Se houver perigo imediato, vá para um local seguro se puder e acione os serviços oficiais de emergência. Não espere uma resposta do escritório para buscar ajuda."
+        "Se houver perigo imediato, vá para um local seguro se puder e acione os serviços oficiais de emergência. Não espere uma resposta do escritório para buscar ajuda. Este chat não aciona socorro nem monitora emergências."
     });
 
   if (priority === "elevada")
@@ -125,7 +123,7 @@ export function ruleTriage(question: string, previous: string[] = []): ChatReply
       intent: "urgencia",
       suggested_action: "atendimento",
       response:
-        "Você mencionou um possível prazo próximo. Busque atendimento jurídico com prioridade. Este chat não confirma datas nem calcula prazos."
+        "Você mencionou um possível prazo próximo. Busque atendimento jurídico com prioridade e reúna a intimação ou comunicação para apresentar à equipe, fora deste chat. Este chat não confirma datas nem calcula prazos. A mensagem aqui não garante atendimento a tempo nem suspende o prazo."
     });
 
   if (policyAttack.test(text))

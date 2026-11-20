@@ -411,3 +411,27 @@ test("A escolha de uma área pede a dúvida sem depender do modelo ou encaminhar
   assert.equal(fixture.requests.length, 0);
   assert.equal(fixture.queries.length, 0);
 });
+
+test("As duas chamadas removem identificadores da pergunta e de todo o contexto", async (t) => {
+  const fixture = modelFixture(t, conversational, [approvedSource]);
+  const identifiers = "00.000.000/0000-00 e 0000000-00.2026.0.00.0000";
+  await answerWithAI(
+    "Dúvida de locação. " + identifiers,
+    ["RG: 00.000.000-X e CEP 00000-000"],
+    AbortSignal.timeout(5000),
+    [{ question: "Aluguel. " + identifiers, response: "Contato (11) 00000-0000" }]
+  );
+  assert.equal(fixture.requests.length, 2);
+  for (const request of fixture.requests) {
+    const context = JSON.parse(request.input[1].content);
+    assert.match(context.question, /Dúvida de locação/);
+    assert.doesNotMatch(
+      JSON.stringify({
+        question: context.question,
+        previous: context.previous,
+        history: context.history
+      }),
+      /00\.000|0000000-00|00\.2026|00000-000|00000-0000/
+    );
+  }
+});

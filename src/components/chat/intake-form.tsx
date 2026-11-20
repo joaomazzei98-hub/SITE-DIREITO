@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 
@@ -134,7 +135,16 @@ export function IntakeForm({
                 />
                 <span>
                   Autorizo o escritório a guardar os dados acima e usá-los para responder
-                  ao meu pedido de atendimento.
+                  ao meu pedido de atendimento, conforme a{" "}
+                  <Link
+                    href="/politica-de-privacidade"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline"
+                  >
+                    Política de privacidade (abre em outra aba)
+                  </Link>
+                  . Este envio não confirma contratação nem atendimento de urgência.
                 </span>
               </label>
               <button

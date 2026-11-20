@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 
 import { noticeVersion, type IntakeDraft } from "@/lib/chat/contracts";
+import { containsIdentifiers } from "@/lib/chat/privacy";
 import { digest, sign, verify } from "./session";
 
 const receiptSchema = z.strictObject({
@@ -62,7 +63,5 @@ export function validateIntakeReceipt(
 }
 
 export function intakeContainsIdentifiers(draft: IntakeDraft) {
-  return /\b(?:\d{3}\.?\d{3}\.?\d{3}-?\d{2}|\d{6,})\b|[\w.+-]+@[\w.-]+\.[a-z]{2,}/i.test(
-    draft.summary
-  );
+  return containsIdentifiers(draft.summary);
 }

@@ -94,3 +94,29 @@ test("Expira a sessão inativa", () => {
   assert.ok(readSession(token, secret, now));
   assert.equal(readSession(token, secret, now + 30 * 60 * 1000), null);
 });
+
+test("O resumo recusa identificadores sem alterar o contato autorizado", () => {
+  for (const summary of [
+    "Processo 0000000-00.2026.0.00.0000 para análise.",
+    "Empresa de CNPJ 00.000.000/0000-00 para análise.",
+    "Residência no CEP 00000-000 para análise.",
+    "Outro contato (11) 00000-0000 para análise.",
+    "Meu RG: 00.000.000-X para análise."
+  ]) {
+    assert.equal(intakeContainsIdentifiers({ ...draft, summary }), true);
+  }
+  assert.equal(intakeContainsIdentifiers(draft), false);
+  assert.equal(intakeDraftSchema.safeParse(draft).success, true);
+});
+
+test("Uma confirmação com a versão anterior do aviso exige nova revisão", () => {
+  assert.equal(
+    intakeConfirmationSchema.safeParse({
+      draft,
+      receipt,
+      confirmed: true,
+      noticeVersion: "atendimento-v1"
+    }).success,
+    false
+  );
+});

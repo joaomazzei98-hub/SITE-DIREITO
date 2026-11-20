@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "test:e2e": "playwright test",
+    "review:chatbot": "tsx scripts/generate-chatbot-review.ts",
     "eval:ai": "tsx --env-file=.env.local tests/ai-evaluation.ts"
   },
   "dependencies": {

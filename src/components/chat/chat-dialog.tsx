@@ -318,6 +318,15 @@ export default function ChatDialog({ onClose }: { onClose: () => void }) {
           )}
           <div className="flex flex-wrap items-center justify-between gap-x-3 text-xs">
             <Link
+              href="/politica-de-privacidade"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 items-center text-petrol/70 underline hover:text-petrol"
+            >
+              Política de privacidade
+              <span className="sr-only"> (abre em outra aba)</span>
+            </Link>
+            <Link
               href="/contato"
               onClick={() => dialog.current?.close()}
               className="inline-flex min-h-11 items-center text-petrol/70 underline hover:text-petrol"
@@ -337,12 +346,10 @@ export default function ChatDialog({ onClose }: { onClose: () => void }) {
           </div>
           {!session && (
             <p className="pb-1 text-xs leading-relaxed text-petrol/65">
-              O assistente oferece informações gerais. Evite inserir nomes completos,
-              documentos e detalhes sensíveis. Quando a IA está ativada, as perguntas
-              podem ser processadas pela OpenAI.{" "}
-              <Link href="/politica-de-privacidade" className="text-petrol underline">
-                Política de privacidade
-              </Link>
+              Este é um assistente automatizado de informações gerais. Não envie nomes
+              completos, números ou cópias de documentos, senhas, dados médicos ou de
+              terceiros. Quando a IA está ativada, a pergunta e até quatro trocas recentes
+              são processadas pela OpenAI. Este chat não monitora urgências.
             </p>
           )}
         </div>

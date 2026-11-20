@@ -1,6 +1,6 @@
 const rentalLaw =
   "https://www2.camara.leg.br/legin/fed/lei/1991/lei-8245-18-outubro-1991-322506-normaatualizada-pl.html";
-const procon = "https://www.procon.sp.gov.br/fornecedor/";
+const procon = "https://www.procon.sp.gov.br/sac/";
 const creci = "https://crecidf.gov.br/perguntas-e-respostas/";
 
 export const realEstateFaq = [

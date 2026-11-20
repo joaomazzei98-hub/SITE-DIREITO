@@ -10,12 +10,35 @@ async function openChat(page: Page) {
 test("Mostra o aviso antes de iniciar a sessão", async ({ page }) => {
   const dialog = await openChat(page);
   await expect(
-    dialog.getByRole("link", { name: "Política de privacidade" })
+    dialog.getByRole("link", { name: "Política de privacidade", exact: false })
   ).toBeVisible();
   await expect(dialog.getByLabel("Sua pergunta")).toHaveCount(0);
   await dialog.getByRole("button", { name: "Iniciar conversa" }).click();
   await expect(dialog.getByLabel("Sua pergunta")).toBeVisible();
   await expect(dialog.getByText("Demonstração local.", { exact: false })).toBeVisible();
+});
+
+test("A política permanece acessível sem apagar a conversa", async ({
+  page,
+  context
+}) => {
+  const dialog = await openChat(page);
+  await dialog.getByRole("button", { name: "Iniciar conversa" }).click();
+  await dialog.getByLabel("Sua pergunta").fill("Tenho uma dúvida sobre aluguel");
+  const link = dialog.getByRole("link", {
+    name: "Política de privacidade",
+    exact: false
+  });
+  const popup = context.waitForEvent("page");
+  await link.click();
+  const privacy = await popup;
+  await expect(privacy).toHaveURL(/\/politica-de-privacidade$/);
+  await expect(privacy.getByRole("heading", { name: "Guarda e exclusão" })).toBeVisible();
+  await expect(privacy.getByRole("link", { name: "página de contato" })).toBeVisible();
+  await privacy.close();
+  await expect(dialog.getByLabel("Sua pergunta")).toHaveValue(
+    "Tenho uma dúvida sobre aluguel"
+  );
 });
 
 test("Os botões de área iniciam a conversa antes de oferecer atendimento humano", async ({
