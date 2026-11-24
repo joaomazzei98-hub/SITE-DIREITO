@@ -60,17 +60,27 @@ A revisão jurídica das 95 respostas foi adiada pelo usuário para depois da im
 
 ### Banco e contas
 
-Criar ou selecionar um projeto Supabase novo e exclusivo de produção, separado de fleming-batista-homologacao. O painel consultado contém somente esse projeto de teste e rachar, de outra aplicação. Nenhum desses projetos deve ser reaproveitado ou apagado para montar a produção. Confirmar eventuais custos antes de contratar plano ou recurso pago.
+O projeto exclusivo de produção foi criado com autorização em 23 de novembro de 2026: fleming-batista-producao, identificador inrzwodhofxkznfibdtd, região sa-east-1. A homologação continua no projeto frncpbyrkgdhnyftwyot. O projeto rachar pertence a outra aplicação e não foi alterado. Não contratar plano ou recurso pago sem confirmar os custos.
 
-Execute npm run prepare:database para gerar .tools/banco-producao.sql. O gerador não se conecta ao Supabase. O SQL contém as três migrações em uma transação única para projeto vazio, sem inserir dados ou perfis. No projeto novo, conferir o destino pelo nome e identificador antes de aplicar o pacote. Depois, verificar tabelas, enum de áreas, RPCs e RLS. Se o SQL Editor for usado, registrar quais versões foram aplicadas e reconciliar o histórico antes de qualquer db push. Não rodar o pacote sobre a homologação existente.
+As três migrações já foram aplicadas ao banco de produção pelo conector Supabase. Não executar novamente .tools/banco-producao.sql nesse projeto. O comando npm run prepare:database continua disponível somente para preparar outro banco novo e vazio; ele não se conecta ao Supabase.
 
-Desativar cadastro público no Supabase Auth, habilitar TOTP e cadastrar apenas as contas autorizadas. Cada titular define a própria senha e configura seu autenticador. Associar o UUID de cada conta ao perfil correto em chatbot_admin_profiles, com active=true. O primeiro administrador e os demais acessos dependem da confirmação do escritório. Não usar metadados editáveis do usuário para conceder perfil. Conferir login, MFA, perfil inativo, separação de pedidos e atribuições no ambiente de destino. [MFA TOTP no Supabase](https://supabase.com/docs/guides/auth/auth-mfa/totp)
+O provedor registrou as versões abaixo. Antes de usar db push ou outro comando que compare históricos, reconciliar as versões locais e remotas sem reaplicar as mudanças. Não alterar o histórico da homologação para copiar o de produção.
+
+| Migração                       | Arquivo local                                     | Versão registrada em produção |
+| ------------------------------ | ------------------------------------------------- | ----------------------------- |
+| chatbot_foundation             | 20261106015311_chatbot_foundation.sql             | 20261123234100                |
+| reconcile_chatbot_email_events | 20261106153712_reconcile_chatbot_email_events.sql | 20261123234103                |
+| add_chatbot_citizenship_area   | 20261112212045_add_chatbot_citizenship_area.sql   | 20261123234105                |
+
+Em 24 de novembro de 2026, a consulta ao banco confirmou dez tabelas com RLS, nenhuma permissão de leitura direta para anon ou authenticated, dois administradores ativos e nenhum pedido armazenado. Os avisos informativos de RLS sem política correspondem ao acesso exclusivo pelo servidor; não adicionar políticas públicas para eliminar esses avisos. Backup e restauração ainda precisam de conferência operacional.
+
+O cadastro público foi desativado e TOTP está habilitado. As duas contas indicadas pelo usuário foram criadas por preenchimento manual de senha e associadas a perfis de administrador ativos em chatbot_admin_profiles. Os dados pessoais dos titulares ficam fora da documentação versionada. Ambos ainda precisam configurar e verificar seus autenticadores; nenhum fator verificado foi encontrado na consulta de 24 de novembro. Não usar metadados editáveis do usuário para conceder perfil. Conferir login, MFA, perfil inativo, separação de pedidos e atribuições no ambiente de destino antes de liberar o uso do painel e o recebimento de pedidos. [MFA TOTP no Supabase](https://supabase.com/docs/guides/auth/auth-mfa/totp)
 
 ### Variáveis e canais
 
 Usar .env.production.example como referência, sem preencher segredos em arquivo versionado. O arquivo local preparado pelo usuário deve terminar em .local e ficar ignorado pelo Git. A publicação exige chaves do projeto correto e um segredo de sessão novo, diferente do Preview. Não transferir automaticamente o arquivo de homologação para Production.
 
-O usuário escolheu WhatsApp e painel da equipe, sem notificações por e-mail, para o lançamento. O número é o existente no site, 5511973508868. Pedidos armazenados exigem painel com equipe habilitada para acompanhar a fila. O primeiro administrador ainda será definido pelo escritório. Manter CHATBOT_EMAIL_ENABLED=0 e não configurar Resend, webhook ou agendamento de e-mail para esse lançamento.
+O usuário escolheu WhatsApp e painel da equipe, sem notificações por e-mail, para o lançamento. O número é o existente no site, 5511973508868. Pedidos armazenados exigem painel com equipe habilitada para acompanhar a fila. Os dois administradores já foram definidos e cadastrados; a validação dos acessos continua pendente. Manter CHATBOT_EMAIL_ENABLED=0 e não configurar Resend, webhook ou agendamento de e-mail para esse lançamento.
 
 Se o escritório decidir acrescentar e-mail posteriormente, confirmar o endereço de destino e o domínio remetente autenticado no Resend, criar o webhook permanente para /api/delivery-events e agendar /api/internal/chat-delivery com seu segredo independente. O e-mail nunca contém o resumo ou o contato do visitante. Conferir aceite e evento de entrega separadamente.
 

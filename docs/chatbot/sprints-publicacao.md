@@ -92,6 +92,24 @@ O comando npm run check:release lê um arquivo .local explicitamente informado e
 
 A configuração atual de Preview passou na checagem. A configuração de produção ainda não existe e não foi inventada. A próxima execução em Preview e o teste de canais reais dependem do fechamento operacional da sprint 4. Após a autorização de produção, a sprint 5 deve usar o roteiro em operacao.md para publicar o commit aprovado e conferir a reversão.
 
+## Preparação operacional — 24 de novembro de 2026
+
+Com autorização do usuário, o projeto fleming-batista-producao (inrzwodhofxkznfibdtd, sa-east-1) foi criado em 23 de novembro. As três migrações foram aplicadas pelo conector Supabase, com versões remotas e correspondência local registradas em operacao.md. Não reaplicar o pacote para banco vazio nem usar db push antes de reconciliar esses históricos. Homologação e rachar não foram alterados.
+
+As duas contas indicadas pelo usuário têm perfis de administrador ativos. As senhas foram definidas manualmente fora do chat. O cadastro público foi desativado e TOTP está habilitado; os dois autenticadores e o primeiro acesso ainda precisam de validação. Dados pessoais e identificadores das contas permanecem em arquivos locais ignorados.
+
+A conferência de 24 de novembro encontrou dez tabelas com RLS, nenhuma permissão SELECT para anon ou authenticated e zero pedidos. A chamada real à Data API com a chave publicável de produção confirmou o bloqueio de leitura de perfis (HTTP 401, permissão negada). Isso não substitui a validação das operações do servidor com a chave secreta correta.
+
+Os 145 testes, os 11 cenários de navegador no Edge, lint, tipos e a sincronização do caderno passaram novamente. O build com o chat habilitado também passou, usando NODE_USE_SYSTEM_CA=1. Os testes de navegador usam demonstração e integrações simuladas. Em seguida, duas perguntas gerais, sobre documentos para locação e conceito de FGTS, foram verificadas com a OpenAI real e a busca no banco de produção. Ambas tiveram resposta com fonte e sem encaminhamento humano obrigatório. Essa amostra confirma a integração nesses casos, sem substituir avaliação ampla ou revisão jurídica. Nenhum pedido foi gravado e nenhuma mensagem foi enviada a pessoas.
+
+O usuário confirmou o armazenamento das credenciais em .env.production.local, ignorado pelo Git e pela Vercel. Foram preenchidos o domínio canônico, WhatsApp, URL e chaves do banco correto, a chave OpenAI existente e um novo segredo independente de sessão. Não foi emitida uma nova chave dos provedores. A conexão real de servidor confirmou os dois administradores ativos e a checagem de configuração de produção passou. Isso não atesta login com MFA, backup, autorização de publicação ou validação do site publicado. O e-mail permanece desativado.
+
+O usuário autorizou o login da ferramenta local da Vercel pelo celular. O CLI confirmou o projeto site-direito, prj_AuAOt9gUnbZtFBde9l1xcVW2V8su, do time joaomazzei98-7432s-projects. Não há variáveis configuradas no ambiente Production. O domínio www.flemingbatista.com.br continua no deploy Ready dpl_Y99DQ3So8BJhRSBk1TCSrBHRy29P, URL site-direito-dk5pmzv9j-joaomazzei98-7432s-projects.vercel.app, do commit ca5cadaaab49b147f38ab49157f10587e8923960, registrado para reversão. A implementação candidata permanece no commit c4486068c9339db6572fd7f8d1a6522b088b7527, com a atualização documental local desta preparação.
+
+Como o usuário pediu continuar antes da configuração dos autenticadores, a publicação mantém CHATBOT_ENABLED=1, CHATBOT_MODE=live e CHATBOT_ADMIN_ENABLED=1, com CHATBOT_HANDOFF_ENABLED=0 e CHATBOT_EMAIL_ENABLED=0. O chat usa a IA e oferece o contato existente pelo WhatsApp; o login permite que os titulares configurem o segundo fator, e o acesso aos dados continua exigindo MFA. O formulário de pedidos armazenados só deverá ser habilitado depois de validar os acessos e a operação da fila. A checagem local passou com essa configuração.
+
+Após a apresentação desse escopo, o usuário autorizou explicitamente o commit, a configuração das credenciais em Production na Vercel e a publicação em www.flemingbatista.com.br. A publicação usará o fluxo Git da main. Esta autorização não habilita o formulário, o envio de e-mails nem dispensa MFA para acessar dados do painel. Registrar o resultado do deploy e das verificações públicas no fechamento da publicação.
+
 ## Revisão periódica
 
 Os resumos jurídicos da base atual têm revisão prevista até 12 de dezembro de 2026. O código deixa de usar os resumos depois dessa data. A revisão deve atualizar o conteúdo e o período de validade antes do vencimento.
